@@ -14,11 +14,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\aluno\\Source\\Repos\\projetotcc-3DSB\\WebsiteTCC\\WebsiteTCC\\WebsiteTCC.csproj",
+      "projectUniqueName": "C:\\Users\\aluno\\Documents\\Miqs\\gustalmeidaa\\projetotcc-3DSB\\WebsiteTCC\\WebsiteTCC\\WebsiteTCC.csproj",
       "projectName": "WebsiteTCC",
-      "projectPath": "C:\\Users\\aluno\\Source\\Repos\\projetotcc-3DSB\\WebsiteTCC\\WebsiteTCC\\WebsiteTCC.csproj",
+      "projectPath": "C:\\Users\\aluno\\Documents\\Miqs\\gustalmeidaa\\projetotcc-3DSB\\WebsiteTCC\\WebsiteTCC\\WebsiteTCC.csproj",
       "packagesPath": "C:\\Users\\aluno\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\aluno\\Source\\Repos\\projetotcc-3DSB\\WebsiteTCC\\WebsiteTCC\\obj\\",
+      "outputPath": "C:\\Users\\aluno\\Documents\\Miqs\\gustalmeidaa\\projetotcc-3DSB\\WebsiteTCC\\WebsiteTCC\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Microsoft\\Xamarin\\NuGet\\"
