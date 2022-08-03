@@ -1,4 +1,5 @@
-﻿@{
+﻿@model IEnumerable<WebsiteTCC.Models.Receitas>
+@{
     Layout = "_Layout";
 }
 
@@ -27,6 +28,22 @@
         <span class="visually-hidden">Próximo</span>
     </button>
 </div>
+
+@foreach (var item in Model)
+{
+    <h2>@item.Nome</h2>
+    @for (int i = 0; i < item.ingredientes.Length; i++)
+    {
+        <h2>@item.Ingredientes[i]</h2>
+
+    }
+    @for (int i = 0; i < item.modoPreparo.Length; i++)
+    {
+        <h2>@item.ModoPreparo[i]</h2>
+
+    }
+
+}
 <!---->
 <section id="conteudo">
     <h2>Principais Receitas</h2>
