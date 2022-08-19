@@ -8,10 +8,27 @@
         <entry key="..\:/Users/Gustavo/Documents/INDMO/ProjetoTCC/app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="..\:/Users/Gustavo/Documents/INDMO/ProjetoTCC/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.129" />
         <entry key="..\:/Users/Gustavo/Documents/INDMO/ProjetoTCC/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.129" />
+        <entry key="..\:/Users/aluno/Documents/GHA/ProjetoTCC/app/src/main/res/drawable/ic_home.xml" value="0.2625" />
+        <entry key="..\:/Users/aluno/Documents/GHA/ProjetoTCC/app/src/main/res/drawable/ic_receitas.xml" value="0.2985" />
+        <entry key="..\:/Users/aluno/Documents/GHA/ProjetoTCC/app/src/main/res/layout/activity_cadastro.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/aluno/Documents/GHA/ProjetoTCC/app/src/main/res/layout/activity_main.xml" value="0.358695652173913" />
+        <entry key="..\:/Users/aluno/Documents/GHA/ProjetoTCC/app/src/main/res/layout/activity_tela_dados.xml" value="0.358695652173913" />
+        <entry key="..\:/Users/aluno/Documents/GHA/ProjetoTCC/app/src/main/res/layout/activity_tela_inicial.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/aluno/Documents/GHA/ProjetoTCC/app/src/main/res/layout/fragment_autenticacao.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/aluno/Documents/GHA/ProjetoTCC/app/src/main/res/layout/fragment_cadastro.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/aluno/Documents/GHA/ProjetoTCC/app/src/main/res/layout/fragment_receitas.xml" value="0.33" />
+        <entry key="..\:/Users/aluno/Documents/GHA/ProjetoTCC/app/src/main/res/layout/layout_telainicial.xml" value="0.358695652173913" />
+        <entry key="..\:/Users/aluno/Documents/GHA/ProjetoTCC/app/src/main/res/menu/menu_rodape.xml" value="0.36666666666666664" />
+        <entry key="..\:/apagar/ProjetoTCC/app/src/main/res/layout/activity_cadastro.xml" value="0.33" />
+        <entry key="..\:/apagar/ProjetoTCC/app/src/main/res/layout/activity_main.xml" value="0.33" />
+        <entry key="..\:/apagar/ProjetoTCC/app/src/main/res/layout/activity_tela_inicial.xml" value="0.358695652173913" />
+        <entry key="..\:/apagar/ProjetoTCC/app/src/main/res/layout/fragment_cadastro.xml" value="0.358695652173913" />
+        <entry key="..\:/apagar/ProjetoTCC/app/src/main/res/layout/fragment_receitas.xml" value="0.358695652173913" />
+        <entry key="..\:/apagar/ProjetoTCC/app/src/main/res/menu/menu_rodape.xml" value="0.36666666666666664" />
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">

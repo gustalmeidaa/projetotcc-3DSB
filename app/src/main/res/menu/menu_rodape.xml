@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/telaInicial"
+        android:title="Home"
+        android:icon="@drawable/ic_home"
+        />
+    <item
+        android:id="@+id/receitas"
+        android:title="Receitas"
+        android:icon="@drawable/ic_receitas"
+        />
+    <item
+        android:id="@+id/Informacoes"
+        android:title="Informações"
+        android:icon="@drawable/ic_info"
+        />
+    <item
+        android:id="@+id/autenticacao"
+        android:title="Informações"
+        android:icon="@drawable/ic_autenticacao"
+        />
+</menu>
