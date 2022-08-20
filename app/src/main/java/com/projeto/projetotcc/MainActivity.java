@@ -2,11 +2,14 @@ package com.projeto.projetotcc;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -15,65 +18,42 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.navigation.NavigationBarView;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.projeto.projetotcc.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
-
-    String email, senha;
+    ActivityMainBinding binding;
+    BottomNavigationView nav;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        binding = ActivityMainBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
 
-        //Criando os objetos do componente da tela
-        EditText edEmail = findViewById(R.id.edEmail);
-        EditText edSenha = findViewById(R.id.edSenha);
-        TextView cad = findViewById(R.id.txtCadastro);
-        Button btEntrar = findViewById(R.id.btEntrar);
-
-        btEntrar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                try{
-                    //Capturando os valores inseridos pelo usuário
-                    email = edEmail.getText().toString().trim();
-                    senha = edSenha.getText().toString().trim();
-                    FirebaseAuth.getInstance().signInWithEmailAndPassword(email, senha).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                        @Override
-                        public void onComplete(@NonNull Task<AuthResult> task) {
-                            if (task.isSuccessful()) {
-                                Intent it = new Intent(MainActivity.this, TelaInicial.class);
-                                startActivity(it);
-                                finish();
-                            } else {
-                                Toast.makeText(MainActivity.this, "DEU RUIM, KLÉBER DA MONTANHA", Toast.LENGTH_SHORT).show();
-                            }
-                        }
-                    });
-                } catch (Exception e){
-                    Toast.makeText(getApplicationContext(), "" + e, Toast.LENGTH_LONG).show();
-                }
-
-
+        binding.bottomNavigationView.setOnItemSelectedListener(item -> {
+            switch (item.getItemId()){
+                case R.id.receitas:
+                    FragmentManager manager = getSupportFragmentManager();
+                    FragmentTransaction fragmentTransaction = manager.beginTransaction();
+                    fragmentTransaction.replace(R.id.frameLayout, new Receitas());
+                    fragmentTransaction.commit();
+                    break;
+                case R.id.telaInicial:
+                    Toast.makeText(this, "NÃO!", Toast.LENGTH_SHORT).show();
+                    break;
+                case R.id.autenticacao:
+                    FragmentManager autent = getSupportFragmentManager();
+                    FragmentTransaction autent2 = autent.beginTransaction();
+                    autent2.replace(R.id.frameLayout, new Autenticacao());
+                    autent2.commit();
+                    break;
             }
+            return true;
         });
 
-        cad.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View view) {
-                try{
-                    Intent it = new Intent(MainActivity.this, Cadastro.class);
-                    startActivity(it);
-
-
-                } catch (Exception ex) {
-                    Toast.makeText(getApplicationContext(), "Erro inesperado", Toast.LENGTH_LONG).show();
-
-                }
-            }
-        });
     }
 
 

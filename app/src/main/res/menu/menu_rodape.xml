@@ -17,7 +17,7 @@
         />
     <item
         android:id="@+id/autenticacao"
-        android:title="Informações"
+        android:title="Autenticação"
         android:icon="@drawable/ic_autenticacao"
         />
 </menu>
