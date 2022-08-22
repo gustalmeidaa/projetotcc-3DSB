@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -74,6 +75,7 @@ public class Receitas extends Fragment {
         Button pesquisar = view.findViewById(R.id.btPesquisar);
         EditText ingrediente = view.findViewById(R.id.txtIngredientes);
 
+
         pesquisar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -85,13 +87,18 @@ public class Receitas extends Fragment {
     }
 
     private void buscarIngredientes(String ingredienteInserido){
-        db.collection("receitas").whereEqualTo("nome", ingredienteInserido).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+        db.collection("receitas").whereArrayContains("ingredientes", ingredienteInserido).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            EditText lista = view.findViewById(R.id.listaModoPreparo);
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                 try {
                     if (!task.getResult().isEmpty()) {
                         for (QueryDocumentSnapshot document : task.getResult()) {
-                            Toast.makeText(view.getContext().getApplicationContext(), "" + ingredienteInserido, Toast.LENGTH_SHORT).show();
+                            String modo = document.get("nome") + "\n" + document.get("modoPreparo").toString();
+                            lista.setText(modo);
+
+                            //Toast.makeText(view.getContext().getApplicationContext(), "" + document.get("modoPreparo"), Toast.LENGTH_SHORT).show();
+                            //Toast.makeText(view.getContext().getApplicationContext(), "" + ingredienteInserido, Toast.LENGTH_SHORT).show();
                         }
                     } else {
                         Toast.makeText(view.getContext().getApplicationContext(), "Deu ruim", Toast.LENGTH_SHORT).show();

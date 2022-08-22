@@ -26,36 +26,35 @@ import com.projeto.projetotcc.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
     ActivityMainBinding binding;
-    BottomNavigationView nav;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        trocarFragment(new TelaInicial());
 
         binding.bottomNavigationView.setOnItemSelectedListener(item -> {
             switch (item.getItemId()){
                 case R.id.receitas:
-                    FragmentManager manager = getSupportFragmentManager();
-                    FragmentTransaction fragmentTransaction = manager.beginTransaction();
-                    fragmentTransaction.replace(R.id.frameLayout, new Receitas());
-                    fragmentTransaction.commit();
+                    trocarFragment(new Receitas());
                     break;
                 case R.id.telaInicial:
-                    Toast.makeText(this, "NÃO!", Toast.LENGTH_SHORT).show();
+                    trocarFragment(new TelaInicial());
                     break;
                 case R.id.autenticacao:
-                    FragmentManager autent = getSupportFragmentManager();
-                    FragmentTransaction autent2 = autent.beginTransaction();
-                    autent2.replace(R.id.frameLayout, new Autenticacao());
-                    autent2.commit();
+                    trocarFragment(new Autenticacao());
                     break;
             }
             return true;
         });
-
     }
 
+    private void trocarFragment(Fragment fragment){
+        FragmentManager manager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = manager.beginTransaction();
+        fragmentTransaction.replace(R.id.frameLayout, fragment);
+        fragmentTransaction.commit();
+    }
 
 
 

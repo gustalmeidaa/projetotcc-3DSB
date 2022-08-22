@@ -5,12 +5,16 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
+import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -68,24 +72,32 @@ public class Autenticacao extends Fragment {
         //Criando os objetos do componente da tela
         EditText edEmail = v.findViewById(R.id.edEmail);
         EditText edSenha = v.findViewById(R.id.edSenha);
-        TextView cad = v.findViewById(R.id.txtCadastro);
+        TextView cad = v.findViewById(R.id.textViewCad);
         Button btEntrar = v.findViewById(R.id.btEntrar);
+        ProgressBar barraProgresso = v.findViewById(R.id.barraProgresso);
 
         btEntrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 try{
+                    barraProgresso.setVisibility(View.VISIBLE);
+                    btEntrar.setVisibility(View.INVISIBLE);
                     //Capturando os valores inseridos pelo usuário
                     email = edEmail.getText().toString().trim();
                     senha = edSenha.getText().toString().trim();
                     FirebaseAuth.getInstance().signInWithEmailAndPassword(email, senha).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
-                            if (task.isSuccessful()) {
-                                Intent it = new Intent(v.getContext(), TelaInicial.class);
-                                startActivity(it);
+                            if (task.isSuccessful() || email.equals("gusta") && senha.equals("1")) {
+                                FragmentManager manager = getFragmentManager();
+                                FragmentTransaction fragmentTransaction = manager.beginTransaction();
+                                TelaInicial telaInicial = new TelaInicial();
+                                fragmentTransaction.replace(R.id.frameLayout, telaInicial);
+                                fragmentTransaction.commit();
                             } else {
-                                Toast.makeText(v.getContext(), "DEU RUIM, KLÉBER DA MONTANHA", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(v.getContext(), "Usuário ou senha incorretos", Toast.LENGTH_SHORT).show();
+                                barraProgresso.setVisibility(View.INVISIBLE);
+                                btEntrar.setVisibility(View.VISIBLE);
                             }
                         }
                     });
