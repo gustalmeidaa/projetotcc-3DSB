@@ -103,6 +103,8 @@ public class Autenticacao extends Fragment {
                     });
                 } catch (Exception e){
                     Toast.makeText(v.getContext(), "" + e, Toast.LENGTH_LONG).show();
+                    barraProgresso.setVisibility(View.INVISIBLE);
+                    btEntrar.setVisibility(View.VISIBLE);
                 }
 
 
