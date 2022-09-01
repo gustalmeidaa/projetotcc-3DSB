@@ -24,12 +24,25 @@
         android:id="@+id/btPesquisar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="36dp"
+        android:layout_marginTop="28dp"
         android:backgroundTint="#FFB702"
         android:text="Pesquisar"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.898"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtIngredientes" />
+
+    <Button
+        android:id="@+id/btAdicionarChip"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="28dp"
+        android:backgroundTint="#FFB702"
+        android:text="Adicionar"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.062"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtIngredientes" />
 
@@ -60,11 +73,25 @@
         app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
     <ListView
-        android:id="@+id/listaModoPreparo"
+        android:id="@+id/listaReceitas"
         android:layout_width="409dp"
-        android:layout_height="401dp"
+        android:layout_height="350dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btPesquisar"
+        app:layout_constraintVertical_bias="0.789" />
+
+    <com.google.android.material.chip.ChipGroup
+        android:id="@+id/grupoIngredientes"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="28dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.492"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btPesquisar"
+        />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

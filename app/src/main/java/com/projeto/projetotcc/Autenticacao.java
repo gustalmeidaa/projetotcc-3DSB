@@ -112,7 +112,6 @@ public class Autenticacao extends Fragment {
         });
 
         cad.setOnClickListener(new View.OnClickListener() {
-
             @Override
             public void onClick(View view) {
                 try{
