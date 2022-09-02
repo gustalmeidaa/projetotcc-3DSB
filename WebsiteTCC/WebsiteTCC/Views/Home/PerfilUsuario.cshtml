@@ -1,0 +1,24 @@
+﻿@{
+    Layout = "_Layout";
+}
+
+<div class="container">
+    <div class="row justify-content-md-center">
+        <div class="col col-lg-4">
+            <h2>Login</h2>
+            <form method="post" action="">
+                <label for="email">E-mail:</label>
+                <br>
+                <input class="form-control" name="email" type="text" style="width:324px;height:40px;">
+                <br>
+                <label for="senha">Senha:</label>
+                <br>
+                <input class="form-control" name="senha" type="text" style="width:324px;height:40px;">
+                <br>
+                <br>
+                <button style="float:left;" type="submit" class="btn btn-success">Entrar</button>
+                <p style="padding-left:100px; padding-top:6px;">Não é cadastrado?<a asp-action="">Alterar dados</a></p>
+            </form>
+        </div>
+    </div>
+</div>

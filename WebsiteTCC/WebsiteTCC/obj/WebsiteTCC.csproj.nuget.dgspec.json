@@ -1,25 +1,21 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\aluno\\Source\\Repos\\projetotcc-3DSB\\WebsiteTCC\\WebsiteTCC\\WebsiteTCC.csproj": {}
+    "C:\\Users\\Gustavo\\source\\repos\\projetotcc-3DSB\\WebsiteTCC\\WebsiteTCC\\WebsiteTCC.csproj": {}
   },
   "projects": {
-    "C:\\Users\\aluno\\Source\\Repos\\projetotcc-3DSB\\WebsiteTCC\\WebsiteTCC\\WebsiteTCC.csproj": {
+    "C:\\Users\\Gustavo\\source\\repos\\projetotcc-3DSB\\WebsiteTCC\\WebsiteTCC\\WebsiteTCC.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\aluno\\Source\\Repos\\projetotcc-3DSB\\WebsiteTCC\\WebsiteTCC\\WebsiteTCC.csproj",
+        "projectUniqueName": "C:\\Users\\Gustavo\\source\\repos\\projetotcc-3DSB\\WebsiteTCC\\WebsiteTCC\\WebsiteTCC.csproj",
         "projectName": "WebsiteTCC",
-        "projectPath": "C:\\Users\\aluno\\Source\\Repos\\projetotcc-3DSB\\WebsiteTCC\\WebsiteTCC\\WebsiteTCC.csproj",
-        "packagesPath": "C:\\Users\\aluno\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\aluno\\Source\\Repos\\projetotcc-3DSB\\WebsiteTCC\\WebsiteTCC\\obj\\",
+        "projectPath": "C:\\Users\\Gustavo\\source\\repos\\projetotcc-3DSB\\WebsiteTCC\\WebsiteTCC\\WebsiteTCC.csproj",
+        "packagesPath": "C:\\Users\\Gustavo\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Gustavo\\source\\repos\\projetotcc-3DSB\\WebsiteTCC\\WebsiteTCC\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Microsoft\\Xamarin\\NuGet\\"
-        ],
         "configFilePaths": [
-          "C:\\Users\\aluno\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+          "C:\\Users\\Gustavo\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.1"
@@ -43,12 +39,6 @@
       "frameworks": {
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
-          "dependencies": {
-            "FireSharp": {
-              "target": "Package",
-              "version": "[2.0.4, )"
-            }
-          },
           "imports": [
             "net461",
             "net462",
@@ -67,7 +57,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.103\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.202\\RuntimeIdentifierGraph.json"
         }
       }
     }

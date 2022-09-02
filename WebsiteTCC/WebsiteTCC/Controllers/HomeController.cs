@@ -1,10 +1,5 @@
-﻿using FireSharp;
-using FireSharp.Config;
-using FireSharp.Interfaces;
-using FireSharp.Response;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -16,21 +11,12 @@ namespace WebsiteTCC.Controllers
 {
     public class HomeController : Controller
     {
-        IFirebaseClient cliente;
-        public HomeController()
-        {
-            IFirebaseConfig conf = new FirebaseConfig()
-            {
-                AuthSecret = "1BMaJSOs6XlJViTkCgN9qikBSWwLKJsrnGNzohYP",
-                BasePath = "https://testefirebase-faa05-default-rtdb.firebaseio.com/"
-            };
-
-            cliente = new FirebaseClient(conf);
-        }
-
-        
-
         private readonly ILogger<HomeController> _logger;
+
+        public HomeController(ILogger<HomeController> logger)
+        {
+            _logger = logger;
+        }
 
         public IActionResult Index()
         {
@@ -39,18 +25,10 @@ namespace WebsiteTCC.Controllers
 
         public IActionResult Receitas()
         {
-            List<Receitas> listaReceitas = new List<Receitas>();
-
-            FirebaseResponse response = cliente.Get("receitas/1");
-            if (response.StatusCode == System.Net.HttpStatusCode.OK)
-            {
-                Receitas r = JsonConvert.DeserializeObject<Receitas>(response.Body);
-                listaReceitas.Add(r);
-            }
-
-            return View(listaReceitas);
+            return View();
         }
         public IActionResult Login()
+
         {
             return View();
         }
@@ -60,6 +38,16 @@ namespace WebsiteTCC.Controllers
         }
 
         public IActionResult PesquisarReceita()
+        {
+            return View();
+        }
+
+        public IActionResult Restricoes()
+        {
+            return View();
+        }
+
+        public IActionResult PerfilUsuario()
         {
             return View();
         }

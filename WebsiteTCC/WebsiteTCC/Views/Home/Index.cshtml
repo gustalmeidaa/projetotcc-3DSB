@@ -4,7 +4,7 @@
 
 
 <!--Área destinada ao Carrossel-->
-<div id="carouselExampleDark" class="carousel carousel-dark slide carousel-fade" data-bs-ride="carousel">
+<div id="carouselExampleDark" class="carousel carousel-dark slide carousel-fade" data-bs-ride="carousel" style="padding-right:160px;">
     <div class="carousel-inner">
         <div class="carousel-item active">
             <img src="~/img/banner-1.jpeg" class="d-block w-100" alt="...">
@@ -25,14 +25,144 @@
         <span class="visually-hidden">Próximo</span>
     </button>
 </div>
-<!---->
-    </section>
-<section id="conteudo">
+
+<div class="container pt-4">
+
+
     <h2>Receitas Disponíveis</h2>
-    <div id="produtos">
-        <div class="produto"></div>
-        <div class="produto"></div>
-        <div class="produto"></div>
-        <div class="produto"></div>
+    <div class="row" style="padding-bottom:50px;">
+        <div class="col-lg">
+            <img src="~/img/carne.svg" height="70px" width="70px" style="position:absolute;padding-bottom:20px;padding-left:20px;" />
+            <div class="produto" style="background-color:#fff;">
+                <h4 style="padding-left:1.8em;padding-top:0.5em;font-size:20px">
+                    <a asp-action="Index" style="text-decoration:none; color:#000;">Receitas de carne</a>
+                </h4>
+                <ul style="list-style:none;padding-top:15px;">
+                    <li><a asp-action="index" style="text-decoration:none;color:#000;">Carne Bovina</a></li>
+                    <li><a asp-action="index" style="text-decoration:none;color:#000;">Carne de Porco</a></li>
+                    <li><a asp-action="index" style="text-decoration:none;color:#000;">Carne Moida</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="col-lg">
+            <img src="~/img/peixe.svg" height="70px" width="70px" style="position:absolute;padding-bottom:20px;padding-left:20px;" />
+            <div class="produto" style="background-color:#fff;">
+                <h4 style="padding-left:1.8em;padding-top:0.5em;font-size:20px">
+                    <a asp-action="Index" style="text-decoration:none; color:#000;">Receitas de peixe</a>
+                </h4>
+                <ul style="list-style:none;padding-top:15px;">
+                    <li><a asp-action="index" style="text-decoration:none;color:#000;">Bacalhau</a></li>
+                    <li><a asp-action="index" style="text-decoration:none;color:#000;">Salmão</a></li>
+                    <li><a asp-action="index" style="text-decoration:none;color:#000;">Tilapia</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="col-lg">
+            <img src="~/img/drink.svg" height="70px" width="70px" style="position:absolute;padding-bottom:20px;padding-left:20px;" />
+            <div class="produto" style="background-color:#fff;">
+                <h4 style="padding-left:1.8em;padding-top:0.5em;font-size:20px">
+                    <a asp-action="Index" style="text-decoration:none; color:#000;">Bebidas</a>
+                </h4>
+                <ul style="list-style:none;padding-top:15px;">
+                    <li><a asp-action="index" style="text-decoration:none;color:#000;">Batidas</a></li>
+                    <li><a asp-action="index" style="text-decoration:none;color:#000;">Sucos naturais</a></li>
+                    <li><a asp-action="index" style="text-decoration:none;color:#000;">Caipirinha</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="col-lg">
+            <img src="~/img/cenoura.svg" height="70px" width="70px" style="position:absolute;padding-bottom:20px;padding-left:20px;" />
+            <div class="produto" style="background-color:#fff;">
+                <h4 style="padding-left:1.8em;padding-top:0.5em;font-size:20px">
+                    <a asp-action="Index" style="text-decoration:none; color:#000;">Verduras</a>
+                </h4>
+                <ul style="list-style:none;padding-top:15px;">
+                    <li><a asp-action="index" style="text-decoration:none;color:#000;">Espinafre</a></li>
+                    <li><a asp-action="index" style="text-decoration:none;color:#000;">Couve</a></li>
+                    <li><a asp-action="index" style="text-decoration:none;color:#000;">Acelga</a></li>
+                </ul>
+            </div>
+        </div>
     </div>
-</section>
+    <div class="row">
+        <div class="col-lg">
+            <div class="card" style="width: 18rem;">
+                <img src="https://t2.rg.ltmcdn.com/pt/posts/1/4/8/nuggets_de_soja_10841_300_square.webp" class="card-img-top" alt="Receita de nuggets">
+                <div class="card-body">
+                    <h5 class="card-title">Receita de nuggets</h5>
+                    <a href="#" class="btn btn-primary">Ver</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg">
+            <div class="card " style="width: 18rem;">
+                <img src="https://t2.rg.ltmcdn.com/pt/posts/1/4/8/nuggets_de_soja_10841_300_square.webp" class="card-img-top" alt="Receita de nuggets">
+                <div class="card-body">
+                    <h5 class="card-title">Receita de nuggets</h5>
+                    <a href="#" class="btn btn-primary">Ver</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg">
+            <div class="card" style="width: 18rem;">
+                <img src="https://t2.rg.ltmcdn.com/pt/posts/1/4/8/nuggets_de_soja_10841_300_square.webp" class="card-img-top" alt="Receita de nuggets">
+                <div class="card-body">
+                    <h5 class="card-title">Receita de nuggets</h5>
+                    <a href="#" class="btn btn-primary">Ver</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg">
+            <div class="card" style="width: 18rem;">
+                <img src="https://t2.rg.ltmcdn.com/pt/posts/1/4/8/nuggets_de_soja_10841_300_square.webp" class="card-img-top" alt="Receita de nuggets">
+                <div class="card-body">
+                    <h5 class="card-title">Receita de nuggets</h5>
+                    <a href="#" class="btn btn-primary">Ver</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row" style="padding-top:50px;">
+        <div class="col-lg">
+            <div class="card" style="width: 18rem;">
+                <img src="https://t2.rg.ltmcdn.com/pt/posts/1/4/8/nuggets_de_soja_10841_300_square.webp" class="card-img-top" alt="Receita de nuggets">
+                <div class="card-body">
+                    <h5 class="card-title">Receita de nuggets</h5>
+                    <a href="#" class="btn btn-primary">Ver</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg">
+            <div class="card " style="width: 18rem;">
+                <img src="https://t2.rg.ltmcdn.com/pt/posts/1/4/8/nuggets_de_soja_10841_300_square.webp" class="card-img-top" alt="Receita de nuggets">
+                <div class="card-body">
+                    <h5 class="card-title">Receita de nuggets</h5>
+                    <a href="#" class="btn btn-primary">Ver</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg">
+            <div class="card" style="width: 18rem;">
+                <img src="https://t2.rg.ltmcdn.com/pt/posts/1/4/8/nuggets_de_soja_10841_300_square.webp" class="card-img-top" alt="Receita de nuggets">
+                <div class="card-body">
+                    <h5 class="card-title">Receita de nuggets</h5>
+                    <a href="#" class="btn btn-primary">Ver</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg">
+            <div class="card" style="width: 18rem;">
+                <img src="https://t2.rg.ltmcdn.com/pt/posts/1/4/8/nuggets_de_soja_10841_300_square.webp" class="card-img-top" alt="Receita de nuggets">
+                <div class="card-body">
+                    <h5 class="card-title">Receita de nuggets</h5>
+                    <a href="#" class="btn btn-primary">Ver</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
