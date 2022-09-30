@@ -5,19 +5,32 @@
     android:id="@+id/frameLayout2"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F3C787"
-    tools:context=".TelaReceita" >
+    android:background="#FFEFD9"
+    tools:context=".TelaReceita">
+
+
+    <ImageView
+        android:id="@+id/imageView8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/pag_receita"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/txtNomeReceita"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="68dp"
+        android:layout_width="378dp"
+        android:layout_height="96dp"
+        android:layout_marginTop="44dp"
+        android:fontFamily="@font/knewave"
         android:hint="Nome da Receita"
+        android:textAlignment="center"
         android:textColor="#000000"
         android:textSize="25sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.551"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -65,16 +78,16 @@
 
     <ListView
         android:id="@+id/listarInformacoes"
-        android:layout_width="368dp"
-        android:layout_height="425dp"
+        android:layout_width="403dp"
+        android:layout_height="371dp"
         android:focusableInTouchMode="false"
         android:isScrollContainer="false"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.488"
+        app:layout_constraintHorizontal_bias="0.487"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtNomeReceita"
-        app:layout_constraintVertical_bias="0.745" />
+        app:layout_constraintVertical_bias="0.679" />
 
     <TextView
         android:id="@+id/txtNomeSwitch"
@@ -86,6 +99,8 @@
         android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/listarInformacoes"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/swIngModo"
+        app:layout_constraintVertical_bias="0.933" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,644 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/frameLayout4"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFEFD9"
+    android:scrollbarSize="16sp"
+    tools:context=".TelaInformacoes"
+    tools:layout_editor_absoluteX="-10dp"
+    tools:layout_editor_absoluteY="163dp">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="2811dp"
+                tools:layout_editor_absoluteX="8dp"
+                tools:layout_editor_absoluteY="0dp">
+
+                <View
+                    android:id="@+id/quadros5"
+                    android:layout_width="284dp"
+                    android:layout_height="72dp"
+                    android:background="@drawable/info_branco"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.508"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/quadros4"
+                    app:layout_constraintVertical_bias="0.041" />
+
+                <TextView
+                    android:id="@+id/textView30"
+                    android:layout_width="248dp"
+                    android:layout_height="65dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="4dp"
+                    android:text="Para você filtrar as receitas, deve cadastrar os ingredientes que não deseja. "
+                    android:textAlignment="center"
+                    android:textColor="#000000"
+                    android:textSize="18sp"
+                    app:layout_constraintStart_toStartOf="@+id/quadros5"
+                    app:layout_constraintTop_toTopOf="@+id/quadros5" />
+
+                <View
+                    android:id="@+id/quadro5"
+                    android:layout_width="379dp"
+                    android:layout_height="177dp"
+                    android:background="@drawable/info_branco"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.609"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/quadros4"
+                    app:layout_constraintVertical_bias="0.51" />
+
+                <TextView
+                    android:id="@+id/textView28"
+                    android:layout_width="348dp"
+                    android:layout_height="158dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="8dp"
+                    android:text="Na última tela você terá a opção de cadastrar os ingredientes que não deseja, deve realizar o mesmo processo que faz para pesquisar, ou seja, adicionar um ingrediente de cada vez. Não se preocupe! Se mudar de ideia, será possível remover o ingrediente adicionado. "
+                    android:textAlignment="center"
+                    android:textColor="#000000"
+                    android:textSize="18sp"
+                    app:layout_constraintStart_toStartOf="@+id/quadro5"
+                    app:layout_constraintTop_toTopOf="@+id/quadro5" />
+
+                <TextView
+                    android:id="@+id/textView27"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/knewave"
+                    android:text="Como filtro as receitas? "
+                    android:textColor="#C39B7F"
+                    android:textSize="28sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.833"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/quadros"
+                    app:layout_constraintVertical_bias="0.635" />
+
+                <View
+                    android:id="@+id/quadros4"
+                    android:layout_width="284dp"
+                    android:layout_height="72dp"
+                    android:background="@drawable/info_branco"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView27"
+                    app:layout_constraintVertical_bias="0.019" />
+
+                <TextView
+                    android:id="@+id/textView29"
+                    android:layout_width="248dp"
+                    android:layout_height="65dp"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginTop="4dp"
+                    android:text="ATENÇÃO: essa opção só é valida à usuários que estão logados. "
+                    android:textAlignment="center"
+                    android:textColor="#000000"
+                    android:textSize="18sp"
+                    app:layout_constraintStart_toStartOf="@+id/quadros4"
+                    app:layout_constraintTop_toTopOf="@+id/quadros4" />
+
+                <View
+                    android:id="@+id/quadros3"
+                    android:layout_width="283dp"
+                    android:layout_height="98dp"
+                    android:background="@drawable/info_quadros"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.448"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView24"
+                    app:layout_constraintVertical_bias="0.021" />
+
+                <TextView
+                    android:id="@+id/textView26"
+                    android:layout_width="215dp"
+                    android:layout_height="91dp"
+                    android:layout_marginStart="40dp"
+                    android:layout_marginTop="4dp"
+                    android:text="É bem simples! Imagino que já esteja cadastrado, se não está, deve fazer isso antes!  "
+                    android:textAlignment="center"
+                    android:textColor="#000000"
+                    android:textSize="18sp"
+                    app:layout_constraintStart_toStartOf="@+id/quadros3"
+                    app:layout_constraintTop_toTopOf="@+id/quadros3" />
+
+                <TextView
+                    android:id="@+id/textView24"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/knewave"
+                    android:text="Como faço o login? "
+                    android:textColor="#C39B7F"
+                    android:textSize="28sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.014"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/quadros2"
+                    app:layout_constraintVertical_bias="0.038" />
+
+                <View
+                    android:id="@+id/quadro4"
+                    android:layout_width="364dp"
+                    android:layout_height="116dp"
+                    android:background="@drawable/info_quadros"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.556"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/quadros3"
+                    app:layout_constraintVertical_bias="0.017" />
+
+                <TextView
+                    android:id="@+id/textView25"
+                    android:layout_width="307dp"
+                    android:layout_height="160dp"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="12dp"
+                    android:text="Basta você ir a página de login (a última opção) e colocar seus dados cadastrados, após isso você deve selecionar o botão “Login” e pronto! "
+                    android:textAlignment="center"
+                    android:textColor="#000000"
+                    android:textSize="18sp"
+                    app:layout_constraintStart_toStartOf="@+id/quadro4"
+                    app:layout_constraintTop_toTopOf="@+id/quadro4" />
+
+                <View
+                    android:id="@+id/quadro3"
+                    android:layout_width="357dp"
+                    android:layout_height="187dp"
+                    android:background="@drawable/info_branco"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.49"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView21"
+                    app:layout_constraintVertical_bias="0.008" />
+
+                <TextView
+                    android:id="@+id/textView21"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/knewave"
+                    android:text="Como faço o cadastro? "
+                    android:textColor="#C39B7F"
+                    android:textSize="28sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.914"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/quadros"
+                    app:layout_constraintVertical_bias="0.024" />
+
+                <TextView
+                    android:id="@+id/textView22"
+                    android:layout_width="307dp"
+                    android:layout_height="160dp"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="16dp"
+                    android:text="Na página de login tem uma opção escrita “Ainda não tem login? Cadastre-se”, basta você selecionar essa opção e preencher os dados com suas informações, depois disso selecione o botão “Cadastrar”, e pronto! Está cadastrado!"
+                    android:textAlignment="center"
+                    android:textColor="#000000"
+                    android:textSize="18sp"
+                    app:layout_constraintStart_toStartOf="@+id/quadro3"
+                    app:layout_constraintTop_toTopOf="@+id/quadro3" />
+
+                <View
+                    android:id="@+id/quadros2"
+                    android:layout_width="296dp"
+                    android:layout_height="126dp"
+                    android:background="@drawable/info_branco"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.496"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/quadro3"
+                    app:layout_constraintVertical_bias="0.015" />
+
+                <TextView
+                    android:id="@+id/textView23"
+                    android:layout_width="252dp"
+                    android:layout_height="108dp"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="4dp"
+                    android:text="  É importante saber que após do cadastro você deve voltar e realizar o seu login, mas não se preocupe! Suas informações já estarão salvas. "
+                    android:textAlignment="center"
+                    android:textColor="#000000"
+                    android:textSize="18sp"
+                    app:layout_constraintStart_toStartOf="@+id/quadros2"
+                    app:layout_constraintTop_toTopOf="@+id/quadros2" />
+
+                <View
+                    android:id="@+id/quadros"
+                    android:layout_width="284dp"
+                    android:layout_height="76dp"
+                    android:background="@drawable/info_quadros"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.495"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/quadro"
+                    app:layout_constraintVertical_bias="0.008" />
+
+                <View
+                    android:id="@+id/view9"
+                    android:layout_width="212dp"
+                    android:layout_height="67dp"
+                    android:background="@drawable/info_branco"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.522"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/view8"
+                    app:layout_constraintVertical_bias="0.003" />
+
+                <TextView
+                    android:id="@+id/textView5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/knewave"
+                    android:text="Sobre"
+                    android:textColor="#000000"
+                    android:textSize="40sp"
+                    app:layout_constraintBottom_toTopOf="@+id/view"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.496"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.315" />
+
+                <View
+                    android:id="@+id/view7"
+                    android:layout_width="212dp"
+                    android:layout_height="67dp"
+                    android:background="@drawable/info_branco"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.501"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView12"
+                    app:layout_constraintVertical_bias="0.005" />
+
+                <View
+                    android:id="@+id/view18"
+                    android:layout_width="351dp"
+                    android:layout_height="97dp"
+                    android:background="@drawable/info_branco"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.518"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.324" />
+
+                <View
+                    android:id="@+id/quadro1"
+                    android:layout_width="344dp"
+                    android:layout_height="87dp"
+                    android:background="@drawable/info_quadros"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.577"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView10"
+                    app:layout_constraintVertical_bias="0.003" />
+
+                <View
+                    android:id="@+id/view3"
+                    android:layout_width="212dp"
+                    android:layout_height="64dp"
+                    android:background="@drawable/info_branco"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.502"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.182" />
+
+                <TextView
+                    android:id="@+id/textView8"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/knewave"
+                    android:text="Como usar"
+                    android:textColor="#C39B7F"
+                    android:textSize="28sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.935"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/view"
+                    app:layout_constraintVertical_bias="0.011" />
+
+                <TextView
+                    android:id="@+id/textView10"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/knewave"
+                    android:text="Benefícios de cadastro"
+                    android:textColor="#C39B7F"
+                    android:textSize="28sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.101"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/view18"
+                    app:layout_constraintVertical_bias="0.022" />
+
+                <View
+                    android:id="@+id/view"
+                    android:layout_width="360dp"
+                    android:layout_height="171dp"
+                    android:background="@drawable/info_quadros"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.495"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.058" />
+
+                <View
+                    android:id="@+id/quadro"
+                    android:layout_width="350dp"
+                    android:layout_height="176dp"
+                    android:background="@drawable/info_quadros"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.565"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/view6"
+                    app:layout_constraintVertical_bias="0.013" />
+
+                <View
+                    android:id="@+id/view6"
+                    android:layout_width="280dp"
+                    android:layout_height="77dp"
+                    android:background="@drawable/info_quadros"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.495"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/quadro2"
+                    app:layout_constraintVertical_bias="0.007" />
+
+                <TextView
+                    android:id="@+id/textView7"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/knewave"
+                    android:text="Motivo"
+                    android:textColor="#C39B7F"
+                    android:textSize="28sp"
+                    app:layout_constraintBottom_toTopOf="@+id/view"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.233"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="1.0" />
+
+                <TextView
+                    android:id="@+id/textView6"
+                    android:layout_width="369dp"
+                    android:layout_height="147dp"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginTop="8dp"
+                    android:text="Desenvolvemos o aplicativo “Try \non – receitas” para facilitar suas buscas de receitas, aqui você pode pesquisar os ingredientes você tem na sua casa e vai aparecer pra você somente receitas que tenham esses ingredientes! \nBem mais fácil não é mesmo?"
+                    android:textAlignment="center"
+                    android:textColor="#000000"
+                    android:textSize="18sp"
+                    app:layout_constraintStart_toStartOf="@+id/view"
+                    app:layout_constraintTop_toTopOf="@+id/view" />
+
+                <View
+                    android:id="@+id/view8"
+                    android:layout_width="212dp"
+                    android:layout_height="71dp"
+                    android:background="@drawable/info_branco"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.529"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/view7"
+                    app:layout_constraintVertical_bias="0.004" />
+
+                <TextView
+                    android:id="@+id/textView4"
+                    android:layout_width="155dp"
+                    android:layout_height="48dp"
+                    android:layout_marginStart="32dp"
+                    android:layout_marginTop="8dp"
+                    android:text="1 – Vá na tela de pesquisar receitas"
+                    android:textAlignment="center"
+                    android:textColor="#000000"
+                    android:textSize="18sp"
+                    app:layout_constraintStart_toStartOf="@+id/view3"
+                    app:layout_constraintTop_toTopOf="@+id/view3" />
+
+                <View
+                    android:id="@+id/view5"
+                    android:layout_width="212dp"
+                    android:layout_height="67dp"
+                    android:background="@drawable/info_branco"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.501"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/view3"
+                    app:layout_constraintVertical_bias="0.006" />
+
+                <TextView
+                    android:id="@+id/textView12"
+                    android:layout_width="161dp"
+                    android:layout_height="56dp"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="8dp"
+                    android:text="2 – Digite um ingrediente que tem"
+                    android:textAlignment="center"
+                    android:textColor="#000000"
+                    android:textSize="18sp"
+                    app:layout_constraintStart_toStartOf="@+id/view5"
+                    app:layout_constraintTop_toTopOf="@+id/view5" />
+
+                <TextView
+                    android:id="@+id/textView13"
+                    android:layout_width="153dp"
+                    android:layout_height="55dp"
+                    android:layout_marginStart="28dp"
+                    android:layout_marginTop="12dp"
+                    android:text="3 – Adicione o ingrediente"
+                    android:textAlignment="center"
+                    android:textColor="#000000"
+                    android:textSize="18sp"
+                    app:layout_constraintStart_toStartOf="@+id/view7"
+                    app:layout_constraintTop_toTopOf="@+id/view7" />
+
+                <TextView
+                    android:id="@+id/textView14"
+                    android:layout_width="185dp"
+                    android:layout_height="63dp"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginTop="4dp"
+                    android:text="4 – Repita o processo para cada ingrediente que deseja"
+                    android:textAlignment="center"
+                    android:textColor="#000000"
+                    android:textSize="18sp"
+                    app:layout_constraintStart_toStartOf="@+id/view8"
+                    app:layout_constraintTop_toTopOf="@+id/view8" />
+
+                <TextView
+                    android:id="@+id/textView15"
+                    android:layout_width="151dp"
+                    android:layout_height="53dp"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="12dp"
+                    android:text="5 – Por fim pesquise a receita"
+                    android:textAlignment="center"
+                    android:textColor="#000000"
+                    android:textSize="18sp"
+                    app:layout_constraintStart_toStartOf="@+id/view9"
+                    app:layout_constraintTop_toTopOf="@+id/view9" />
+
+                <View
+                    android:id="@+id/view4"
+                    android:layout_width="341dp"
+                    android:layout_height="85dp"
+                    android:background="@drawable/info_branco"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.475"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.148" />
+
+                <TextView
+                    android:id="@+id/textView9"
+                    android:layout_width="270dp"
+                    android:layout_height="62dp"
+                    android:layout_marginStart="36dp"
+                    android:layout_marginTop="8dp"
+                    android:text="O uso do aplicativo é bem simples, aqui vai um passo a passo:"
+                    android:textAlignment="center"
+                    android:textColor="#000000"
+                    android:textSize="18sp"
+                    app:layout_constraintStart_toStartOf="@+id/view4"
+                    app:layout_constraintTop_toTopOf="@+id/view4" />
+
+
+                <TextView
+                    android:id="@+id/textView11"
+                    android:layout_width="328dp"
+                    android:layout_height="84dp"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginTop="4dp"
+                    android:text="Não gosta de algum ingrediente? \nÉ alérgico?\n Não quer algum ingrediente nas suas receitas?"
+                    android:textAlignment="center"
+                    android:textColor="#000000"
+                    android:textSize="18sp"
+                    app:layout_constraintStart_toStartOf="@+id/quadro1"
+                    app:layout_constraintTop_toTopOf="@+id/quadro1" />
+
+                <View
+                    android:id="@+id/quadro2"
+                    android:layout_width="280dp"
+                    android:layout_height="77dp"
+                    android:background="@drawable/info_quadros"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.495"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/quadro1"
+                    app:layout_constraintVertical_bias="0.006" />
+
+                <TextView
+                    android:id="@+id/textView17"
+                    android:layout_width="275dp"
+                    android:layout_height="67dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="16dp"
+                    android:text="Você deve ter notado que existe um login aqui certo? "
+                    android:textAlignment="center"
+                    android:textColor="#000000"
+                    android:textSize="18sp"
+                    app:layout_constraintStart_toStartOf="@+id/quadro2"
+                    app:layout_constraintTop_toTopOf="@+id/quadro2" />
+
+                <TextView
+                    android:id="@+id/textView20"
+                    android:layout_width="254dp"
+                    android:layout_height="70dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="4dp"
+                    android:text="Somente se você mudar e ideia, então voltaremos a te mostrar as receitas!"
+                    android:textAlignment="center"
+                    android:textColor="#000000"
+                    android:textSize="18sp"
+                    app:layout_constraintStart_toStartOf="@+id/quadros"
+                    app:layout_constraintTop_toTopOf="@+id/quadros" />
+
+                <TextView
+                    android:id="@+id/textView18"
+                    android:layout_width="297dp"
+                    android:layout_height="173dp"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="12dp"
+                    android:text="Com o login no aplicativo é possível você filtrar suas receitas, ou seja, os alimentos que você não deseja que apareça nas suas receitas, serão retirados, não mostraremos mais nenhuma receita que tenha o ingrediente que você não quer! "
+                    android:textAlignment="center"
+                    android:textColor="#000000"
+                    android:textSize="18sp"
+                    app:layout_constraintStart_toStartOf="@+id/quadro"
+                    app:layout_constraintTop_toTopOf="@+id/quadro" />
+
+                <TextView
+                    android:id="@+id/textView19"
+                    android:layout_width="267dp"
+                    android:layout_height="77dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="4dp"
+                    android:text="Bom, o cadastro na nossa plataforma traz uma GRANDE vantagem a você! "
+                    android:textAlignment="center"
+                    android:textColor="#000000"
+                    android:textSize="18sp"
+                    app:layout_constraintStart_toStartOf="@+id/view6"
+                    app:layout_constraintTop_toTopOf="@+id/view6" />
+
+                <TextView
+                    android:id="@+id/textView16"
+                    android:layout_width="307dp"
+                    android:layout_height="95dp"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginTop="4dp"
+                    android:text="Simples assim, depois disso aparecerá as receitas existentes no nosso aplicativo e basta você escolher a que deseja! "
+                    android:textAlignment="center"
+                    android:textColor="#000000"
+                    android:textSize="18sp"
+                    app:layout_constraintStart_toStartOf="@+id/view18"
+                    app:layout_constraintTop_toTopOf="@+id/view18" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </LinearLayout>
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

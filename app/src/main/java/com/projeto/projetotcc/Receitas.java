@@ -1,12 +1,11 @@
 package com.projeto.projetotcc;
 
-import static android.graphics.Color.rgb;
-
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
@@ -24,7 +23,11 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipGroup;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
@@ -37,9 +40,11 @@ public class Receitas extends Fragment {
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private List<String> listaIngredientes = new ArrayList<>();
     private List<Receita> lReceitas = new ArrayList<>();
+    private List<String> lAlergenicos = new ArrayList<>();
     private ChipGroup grupoIngredientes;
-
-
+    private List<String> listaAlergenicos = new ArrayList<>();
+    FirebaseAuth autenticador = FirebaseAuth.getInstance();
+    String uid;
 
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
@@ -69,6 +74,7 @@ public class Receitas extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
         //Criando os objetos de cada componente da tela
         view = inflater.inflate(R.layout.fragment_receitas, container, false);
         Button pesquisar = view.findViewById(R.id.btPesquisar);
@@ -76,17 +82,51 @@ public class Receitas extends Fragment {
         EditText ingrediente = view.findViewById(R.id.txtIngredientes);
         ChipGroup grupoIngredientes = view.findViewById(R.id.grupoIngredientes);
 
+        try{
+            //Verificando se há um usuário logado
+            if(autenticador.getCurrentUser() != null){
+                //Atribuindo o 'uid' do documento do usuário logado a variável 'uid'
+                uid = autenticador.getUid();
+                if(!uid.isEmpty()){
+                    db.collection("usuarios").document(uid).addSnapshotListener(new EventListener<DocumentSnapshot>() {
+                        @Override
+                        public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
+                            Usuario usuario = value.toObject(Usuario.class);
+                            if(!(usuario.getAlergenicos() == null)){
+                                for(String alerg : usuario.getAlergenicos()){
+                                    listaAlergenicos.add(alerg);
+                                }
+                            }
+
+                        }
+                    });
+                }
+            }
+        } catch (Exception o){
+            Toast.makeText(view.getContext(), "" + o, Toast.LENGTH_SHORT).show();
+        }
+
+        //Método responsável pela adição do chip na tela
         adicionarChip.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String ingredientes = ingrediente.getText().toString().trim();
+                //Capturando o valor do input de ingrediente do usuário
+                String ingredientes = ingrediente.getText().toString().trim().toLowerCase();
+                //Verificando se o ingrediente inserido não é menor ou igual a 2 caracteres
                 if(!(ingredientes.length() <= 2)){
-                    estruturarChip(ingredientes);
-                    ingrediente.setText("");
-                } else {
-                    Toast.makeText(getContext(), "Adicione um ingrediente válido", Toast.LENGTH_SHORT).show();
-                }
+                    //Caso não seja, há a verificação na lista de ingredientes se o que foi digitado
+                    //já não está presente
+                    if(!listaIngredientes.contains(ingredientes)){
+                        estruturarChip(ingredientes);
+                        listaIngredientes.add(ingredientes);
+                        ingrediente.setText("");
+                    } else {
+                        Toast.makeText(view.getContext(), "Este ingrediente já foi inserido", Toast.LENGTH_SHORT).show();
+                    }
 
+                } else {
+                    Toast.makeText(view.getContext(), "Adicione um ingrediente válido", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
@@ -102,32 +142,38 @@ public class Receitas extends Fragment {
                     }
                     buscarReceitas(listaIngredientes);
                 } catch (Exception ex){
-                    Toast.makeText(getContext(), "" + ex, Toast.LENGTH_SHORT).show();
+                    ex.printStackTrace();
+                    Toast.makeText(view.getContext(), "" + ex, Toast.LENGTH_SHORT).show();
                 }
             }
         });
+
         return view;
     }
 
     private void estruturarChip(String ingredientes){
         try{
+            grupoIngredientes = view.findViewById(R.id.grupoIngredientes);
             Chip chip = new Chip(getContext());
             chip.setText(ingredientes);
             chip.setChipIconResource(R.drawable.ic_receitas);
             chip.setTextColor(ColorStateList.valueOf(Color.BLACK));
-            chip.setChipBackgroundColor(ColorStateList.valueOf(Color.rgb(255, 183, 2)));
+            chip.setChipBackgroundColor(ColorStateList.valueOf(Color.rgb(168, 142, 114)));
             chip.setCloseIconVisible(true);
             chip.setX(30);
+            //Método para remover o chip do ingrediente caso o "x" seja pressionado
             chip.setOnCloseIconClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     grupoIngredientes.removeView(chip);
+                    String removerIngrediente = chip.getText().toString();
+                    listaAlergenicos.remove(removerIngrediente);
                 }
             });
-            grupoIngredientes = view.findViewById(R.id.grupoIngredientes);
             grupoIngredientes.addView(chip);
         } catch (Exception ex){
-            Toast.makeText(getContext(), "" + ex, Toast.LENGTH_SHORT).show();
+            ex.printStackTrace();
+            Toast.makeText(view.getContext(), "" + ex, Toast.LENGTH_SHORT).show();
 
         }
     }
@@ -139,10 +185,11 @@ public class Receitas extends Fragment {
                 db.collection("receitas").orderBy("ingredientes").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     ListView listaReceitas = view.findViewById(R.id.listaReceitas);
                     ArrayAdapter<String> adapter;
-                    List<Receita> listaDasReceitas;
+                    List<Receita> listaDasReceitas = new ArrayList<>();
                     List<String> nomesReceitas = new ArrayList<>();
                     List<List<String>> modo_Preparo = new ArrayList<List<String>>();
                     List<List<String>> ingredientes = new ArrayList<List<String>>();
+
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         try {
@@ -153,12 +200,36 @@ public class Receitas extends Fragment {
                                 }
                                 for(int i = 0; i < grupoIngredientes.getChildCount(); i++){
                                     Chip chip = (Chip) grupoIngredientes.getChildAt(i);
-                                    String comparacao = chip.getText().toString();
-                                    listaDasReceitas = lReceitas.stream().filter(ingredientes -> ingredientes.ingredientes.stream().anyMatch(s -> s.contains(comparacao)))
-                                            .collect(Collectors.toList());
-                                    lReceitas = listaDasReceitas;
+                                    //Verificando se a lista de alergênicos está vazia
+                                    if(listaAlergenicos.isEmpty()){
+                                        //Se estiver, apenas o valor do ingrediente inserido será
+                                        //analisado em busca de receitas
+                                        String comparacao = chip.getText().toString().toLowerCase();
+                                        listaDasReceitas = lReceitas.stream().filter(ingredientes -> ingredientes.ingredientes.stream().anyMatch(s -> s.contains(comparacao)))
+                                                .collect(Collectors.toList());
+                                        lReceitas = listaDasReceitas;
+                                    } else {
+                                        //Caso não esteja vazia, será percorrida a lista de alergênicos
+                                        for(int a = 0; a < listaAlergenicos.size(); a++){
+                                            //Atribuindo os alergênicos a variável "alergenico"
+                                            String alergenico = listaAlergenicos.get(a);
+                                            Toast.makeText(view.getContext(), "" + alergenico, Toast.LENGTH_SHORT).show();
+                                            String comparacao = chip.getText().toString().toLowerCase();
+                                            //Como feito inicialmente, a lista estará recebendo os valores
+                                            //de todas as receitas contendo o(s) ingrediente(s) inseridos
+                                            listaDasReceitas = lReceitas.stream().filter(ingredientes -> ingredientes.ingredientes.stream().anyMatch(s -> s.contains(comparacao)))
+                                                    .collect(Collectors.toList());
+                                            lReceitas = listaDasReceitas;
+                                            //Agora, será feita mais uma etapa da filtragem, onde
+                                            //serão removidas as recceitas que contenham algum alergênico
+                                            listaDasReceitas = lReceitas.stream().filter(ingredientes -> ingredientes.ingredientes.stream().noneMatch(s -> s.contains(alergenico)))
+                                                    .collect(Collectors.toList());
+                                            lReceitas = listaDasReceitas;
+                                        }
+                                    }
                                 }
 
+                                //Percorrendo a lista das receitas através de um forEach
                                 for (Receita rec : listaDasReceitas) {
                                     ingredientes.add(rec.ingredientes);
                                     modo_Preparo.add(rec.modoPreparo);
@@ -167,7 +238,7 @@ public class Receitas extends Fragment {
 
                                 //Inicialização do adapter e atribuir a lista dos nomes
                                 adapter = new ArrayAdapter<String>(getContext(),
-                                        android.R.layout.simple_list_item_1,
+                                        R.layout.layout_lista,
                                         nomesReceitas);
 
                                 //Adicionar os itens na lista usando o método setAdapter
@@ -209,12 +280,14 @@ public class Receitas extends Fragment {
                             }
 
                         } catch (Exception ex) {
+                            ex.printStackTrace();
                             Toast.makeText(view.getContext().getApplicationContext(), "" + ex, Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
             }
         } catch (Exception ex){
+            ex.printStackTrace();
             Toast.makeText(view.getContext().getApplicationContext(), "TESTE" + ex, Toast.LENGTH_SHORT).show();
         }
     }
