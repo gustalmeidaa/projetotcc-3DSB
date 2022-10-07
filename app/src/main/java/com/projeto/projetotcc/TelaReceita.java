@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.CompoundButton;
 import android.widget.ListView;
@@ -30,14 +31,6 @@ public class TelaReceita extends Fragment {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment TelaReceita.
-     */
     // TODO: Rename and change types and number of parameters
     public static TelaReceita newInstance(String param1, String param2) {
         TelaReceita fragment = new TelaReceita();
@@ -78,24 +71,35 @@ public class TelaReceita extends Fragment {
 
             nomeSwitch.setText("    Ingredientes");
             ArrayAdapter adapter = new ArrayAdapter<String>(getContext(),
-                    android.R.layout.simple_list_item_1,
+                    R.layout.layout_lista,
                     ingredientes);
             listarInformacoes.setAdapter(adapter);
+
+
 
             //Método para alternar a lista entre "Ingredientes" e "Modo de Preparo"
             alternarModo.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                 @Override
                 public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                    //Verificando qual é a seleção do usuário
+                    //Caso o switch não esteja "selecionado", serão listados os ingredientes
                     if(!alternarModo.isChecked()){
                         nomeSwitch.setText("    Ingredientes");
                         ArrayAdapter adapter = new ArrayAdapter<String>(getContext(),
-                                android.R.layout.simple_list_item_1,
+                                R.layout.layout_lista,
                                 ingredientes);
                         listarInformacoes.setAdapter(adapter);
+                        listarInformacoes.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                            @Override
+                            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                                String item = (String) adapterView.getItemAtPosition(i);
+                            }
+                        });
                     } else {
+                        //Caso o switch esteja "selecionado", será listado o modo de preparo.
                         nomeSwitch.setText("Modo de Preparo");
                         ArrayAdapter adapter = new ArrayAdapter<String>(getContext(),
-                                android.R.layout.simple_list_item_1,
+                                R.layout.layout_lista,
                                 modo);
                         listarInformacoes.setAdapter(adapter);
                     }
@@ -105,12 +109,6 @@ public class TelaReceita extends Fragment {
         } catch (Exception ex){
             Toast.makeText(getContext(), "" + ex, Toast.LENGTH_SHORT).show();
         }
-
-
-
-
-
-
         return view;
     }
 }

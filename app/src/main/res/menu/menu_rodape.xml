@@ -11,7 +11,7 @@
         android:icon="@drawable/ic_receitas"
         />
     <item
-        android:id="@+id/Informacoes"
+        android:id="@+id/informacoes"
         android:title="Informações"
         android:icon="@drawable/ic_info"
         />

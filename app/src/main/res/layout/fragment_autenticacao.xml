@@ -5,50 +5,25 @@
     android:id="@+id/autenticacao"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F3C787"
+    android:background="#FFEFD9"
     tools:context=".Autenticacao">
 
-    <EditText
-        android:id="@+id/edEmail"
+    <ImageView
+        android:id="@+id/imageView6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="284dp"
-        android:background="@drawable/ic_caixaspersonalizadas"
-        android:drawableStart="@drawable/ic_email"
-        android:drawablePadding="12dp"
-        android:ems="10"
-        android:hint="E-mail"
-        android:inputType="textEmailAddress"
-        android:minHeight="48dp"
-        android:paddingStart="12dp"
-        android:paddingEnd="12dp"
-        android:textColor="#000000"
-        android:textColorHint="#818080"
-        android:textSize="20sp"
+        android:src="@drawable/pag4"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/btEntrar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="44dp"
-        android:backgroundTint="#FFB702"
-        android:text="Entrar"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edSenha" />
 
     <EditText
         android:id="@+id/edSenha"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="36dp"
+        android:layout_marginTop="44dp"
         android:background="@drawable/ic_caixaspersonalizadas"
         android:drawableStart="@drawable/ic_senha"
         android:drawablePadding="12dp"
@@ -67,28 +42,25 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/edEmail" />
 
-    <TextView
-        android:id="@+id/textViewCad"
-        android:layout_width="244dp"
-        android:layout_height="36dp"
-        android:layout_marginTop="20dp"
-        android:text="Ainda não possui conta?"
-        android:textColor="#FFFFFF"
+    <EditText
+        android:id="@+id/edEmail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="328dp"
+        android:background="@drawable/ic_caixaspersonalizadas"
+        android:drawableStart="@drawable/ic_email"
+        android:drawablePadding="12dp"
+        android:ems="10"
+        android:hint="E-mail"
+        android:inputType="textEmailAddress"
+        android:minHeight="48dp"
+        android:paddingStart="12dp"
+        android:paddingEnd="12dp"
+        android:textColor="#000000"
+        android:textColorHint="#818080"
         android:textSize="20sp"
-        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.52"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btEntrar" />
-
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="233dp"
-        android:layout_height="226dp"
-        android:layout_marginTop="36dp"
-        android:src="@drawable/logobranca"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.488"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -103,5 +75,54 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/edSenha" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:backgroundTint="#D8BC9E"
+        app:cardCornerRadius="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edSenha">
+
+        <Button
+            android:id="@+id/btEntrar"
+            style="?attr/borderlessButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#D8BC9E"
+            android:shadowColor="#D8BC9E"
+            android:text="Entrar"
+            android:textColor="#000000"
+            android:textSize="20sp" />
+    </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:id="@+id/textViewCad"
+        android:layout_width="408dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="16dp"
+        android:text="Ainda não possui conta? \n Cadastre-se!"
+        android:textAlignment="center"
+        android:textColor="#000000"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.333"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardView" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="279dp"
+        android:layout_height="409dp"
+        android:layout_marginBottom="388dp"
+        android:src="@drawable/logoo"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

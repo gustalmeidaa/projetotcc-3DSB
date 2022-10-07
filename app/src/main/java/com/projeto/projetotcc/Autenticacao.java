@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -30,9 +31,7 @@ import com.google.firebase.auth.FirebaseAuth;
  */
 public class Autenticacao extends Fragment {
     View v;
-    String email, senha;
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
+
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
@@ -74,40 +73,43 @@ public class Autenticacao extends Fragment {
         EditText edSenha = v.findViewById(R.id.edSenha);
         TextView cad = v.findViewById(R.id.textViewCad);
         Button btEntrar = v.findViewById(R.id.btEntrar);
+        CardView cardView = v.findViewById(R.id.cardView);
         ProgressBar barraProgresso = v.findViewById(R.id.barraProgresso);
+
 
         btEntrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 try{
                     barraProgresso.setVisibility(View.VISIBLE);
-                    btEntrar.setVisibility(View.INVISIBLE);
+                    cardView.setVisibility(View.INVISIBLE);
+                    //btEntrar.setVisibility(View.INVISIBLE);
                     //Capturando os valores inseridos pelo usuário
-                    email = edEmail.getText().toString().trim();
-                    senha = edSenha.getText().toString().trim();
+                    String email = edEmail.getText().toString().trim();
+                    String senha = edSenha.getText().toString().trim();
+
                     FirebaseAuth.getInstance().signInWithEmailAndPassword(email, senha).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful() || email.equals("gusta") && senha.equals("1")) {
                                 FragmentManager manager = getFragmentManager();
                                 FragmentTransaction fragmentTransaction = manager.beginTransaction();
-                                TelaInicial telaInicial = new TelaInicial();
-                                fragmentTransaction.replace(R.id.frameLayout, telaInicial);
+                                PerfilUsuario perfilUsuario = new PerfilUsuario();
+                                fragmentTransaction.replace(R.id.frameLayout, perfilUsuario);
                                 fragmentTransaction.commit();
                             } else {
                                 Toast.makeText(v.getContext(), "Usuário ou senha incorretos", Toast.LENGTH_SHORT).show();
                                 barraProgresso.setVisibility(View.INVISIBLE);
-                                btEntrar.setVisibility(View.VISIBLE);
+                                cardView.setVisibility(View.VISIBLE);
+                                //btEntrar.setVisibility(View.VISIBLE);
                             }
                         }
                     });
                 } catch (Exception e){
-                    Toast.makeText(v.getContext(), "" + e, Toast.LENGTH_LONG).show();
+                    Toast.makeText(v.getContext(), "Verifique se os campos estão preenchidos corretamente", Toast.LENGTH_LONG).show();
                     barraProgresso.setVisibility(View.INVISIBLE);
                     btEntrar.setVisibility(View.VISIBLE);
                 }
-
-
             }
         });
 
@@ -123,7 +125,12 @@ public class Autenticacao extends Fragment {
             }
         });
 
-
+        if(FirebaseAuth.getInstance().getCurrentUser() != null){
+            //Retornando ao Fragment da página de "Autenticação"
+            PerfilUsuario perfilUsuario = new PerfilUsuario();
+            FragmentManager manager = getFragmentManager();
+            manager.beginTransaction().replace(R.id.frameLayout, perfilUsuario).commit();
+        }
         return v;
     }
 }

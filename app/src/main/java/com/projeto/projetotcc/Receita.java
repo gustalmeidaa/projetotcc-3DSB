@@ -6,6 +6,7 @@ import java.util.List;
 public class Receita {
     protected String nome;
     protected List<String> ingredientes;
+    protected List<String> nomesReceitas;
     protected List<String> modoPreparo;
 
 
@@ -23,6 +24,14 @@ public class Receita {
 
     public void setIngredientes(List<String> ingredientes) {
         this.ingredientes = ingredientes;
+    }
+
+    public List<String> getNomesReceitas() {
+        return nomesReceitas;
+    }
+
+    public void setNomesReceitas(List<String> NomesReceitas) {
+        this.nomesReceitas = nomesReceitas;
     }
 
     public List<String> getModoPreparo() {
