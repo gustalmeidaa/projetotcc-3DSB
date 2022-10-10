@@ -17,7 +17,6 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.android.material.chip.Chip;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
@@ -146,6 +145,8 @@ public class ReceitasPorNome extends Fragment {
             db.collection("receitas").orderBy("nome").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                 ListView listaReceitas = view.findViewById(R.id.listaReceitas);
                 List<Receita> listaDasReceitas = new ArrayList<>();
+                List<String> nomesReceitas = new ArrayList<>();
+                List<Receita> listaFinal = new ArrayList<Receita>();
                 ArrayAdapter<String> adapter;
                 @Override
                 public void onComplete(@NonNull Task<QuerySnapshot> task) {
@@ -160,16 +161,47 @@ public class ReceitasPorNome extends Fragment {
                             if (listaAlergenicos.isEmpty()) {
                                 //Se estiver, apenas o valor do nome inserido será
                                 //analisado em busca de receitas
-                                listaDasReceitas = lReceitas.stream().filter(nomesReceitas -> nomesReceitas.nomesReceitas.stream().anyMatch(s -> s.contains(nomeReceita)))
-                                        .collect(Collectors.toList());
-                                //lReceitas = listaDasReceitas;
-                                Toast.makeText(view.getContext(), "" + listaDasReceitas.get(0).toString(), Toast.LENGTH_SHORT).show();
+                                for (Receita rec : lReceitas) {
+                                    if (rec.getNome().contains(nomeReceita)) {
+                                        listaDasReceitas.add(rec);
+                                        nomesReceitas.add(rec.nome);
+                                    }
+                                }
+                            } else {
+                                //Caso não esteja vazia, será percorrida a lista de alergênicos
+                                Toast.makeText(view.getContext(), "CAIU AQUI", Toast.LENGTH_SHORT).show();
+                                for (int a = 0; a < listaAlergenicos.size(); a++) {
+                                    //Atribuindo os alergênicos a variável "alergenico"
+                                    String alergenico = listaAlergenicos.get(a);
+                                    //serão removidas as receitas que contenham algum alergênico
+                                    lReceitas.stream().filter(receita -> receita.nome.contains(nomeReceita));
+                                    listaDasReceitas = lReceitas;
+                                    listaDasReceitas = lReceitas.stream().filter(ingredientes -> ingredientes.ingredientes.stream().noneMatch(s -> s.contains(alergenico)))
+                                            .collect(Collectors.toList());
+                                    lReceitas = listaDasReceitas;
+
+                                    listaDasReceitas = lReceitas.stream().filter(ingredientes -> ingredientes.ingredientes.stream().noneMatch(s -> s.contains(alergenico)))
+                                            .collect(Collectors.toList());
+
+
+                                }
                             }
                         } catch (Exception e){
                             e.printStackTrace();
                             Toast.makeText(view.getContext(), "" + e, Toast.LENGTH_SHORT).show();
                         }
+                        for (Receita rec : listaDasReceitas) {
+                            nomesReceitas.add(rec.nome);
+                        }
+                        //Inicialização do adapter e atribuir a lista dos nomes
+                        adapter = new ArrayAdapter<String>(getContext(),
+                                R.layout.layout_lista,
+                                nomesReceitas);
+                        //Adicionar os itens na lista usando o método setAdapter
+                        listaReceitas.setAdapter(adapter);
 
+                        //Limpando a lista de receitas após a pesquisa
+                        lReceitas.clear();
                     }
                 }
             });
