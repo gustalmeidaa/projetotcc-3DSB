@@ -5,10 +5,12 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -123,6 +125,7 @@ public class ReceitasPorNome extends Fragment {
                     nomeReceita = nomeDaReceita.getText().toString().trim();
                     //Verificando se o nome inserido não é menor ou igual a 2 caracteres
                     if(!(nomeReceita.length() <= 2)){
+                        listaNomes.add(nomeReceita);
                         buscarReceita();
                     } else {
                         Toast.makeText(view.getContext(), "Digite um nome válido", Toast.LENGTH_SHORT).show();
@@ -147,6 +150,8 @@ public class ReceitasPorNome extends Fragment {
                 List<Receita> listaDasReceitas = new ArrayList<>();
                 List<String> nomesReceitas = new ArrayList<>();
                 List<Receita> listaFinal = new ArrayList<Receita>();
+                List<List<String>> modo_Preparo = new ArrayList<List<String>>();
+                List<List<String>> ingredientes = new ArrayList<List<String>>();
                 ArrayAdapter<String> adapter;
                 @Override
                 public void onComplete(@NonNull Task<QuerySnapshot> task) {
@@ -157,48 +162,60 @@ public class ReceitasPorNome extends Fragment {
                         }
 
                         try{
-                            //Verificando se a lista de alergênicos está vazia
-                            if (listaAlergenicos.isEmpty()) {
-                                //Se estiver, apenas o valor do nome inserido será
-                                //analisado em busca de receitas
-                                for (Receita rec : lReceitas) {
-                                    if (rec.getNome().contains(nomeReceita)) {
-                                        listaDasReceitas.add(rec);
-                                        nomesReceitas.add(rec.nome);
-                                    }
-                                }
-                            } else {
-                                //Caso não esteja vazia, será percorrida a lista de alergênicos
-                                Toast.makeText(view.getContext(), "CAIU AQUI", Toast.LENGTH_SHORT).show();
-                                for (int a = 0; a < listaAlergenicos.size(); a++) {
-                                    //Atribuindo os alergênicos a variável "alergenico"
-                                    String alergenico = listaAlergenicos.get(a);
-                                    //serão removidas as receitas que contenham algum alergênico
-                                    lReceitas.stream().filter(receita -> receita.nome.contains(nomeReceita));
-                                    listaDasReceitas = lReceitas;
-                                    listaDasReceitas = lReceitas.stream().filter(ingredientes -> ingredientes.ingredientes.stream().noneMatch(s -> s.contains(alergenico)))
-                                            .collect(Collectors.toList());
-                                    lReceitas = listaDasReceitas;
-
-                                    listaDasReceitas = lReceitas.stream().filter(ingredientes -> ingredientes.ingredientes.stream().noneMatch(s -> s.contains(alergenico)))
-                                            .collect(Collectors.toList());
-
-
+                            //Analisando a lista de receitas em busca do nome informado
+                            for (Receita rec : lReceitas) {
+                                if (rec.getNome().contains(nomeReceita)) {
+                                    listaDasReceitas.add(rec);
                                 }
                             }
                         } catch (Exception e){
                             e.printStackTrace();
                             Toast.makeText(view.getContext(), "" + e, Toast.LENGTH_SHORT).show();
                         }
+
                         for (Receita rec : listaDasReceitas) {
+                            ingredientes.add(rec.ingredientes);
+                            modo_Preparo.add(rec.modoPreparo);
                             nomesReceitas.add(rec.nome);
                         }
+
                         //Inicialização do adapter e atribuir a lista dos nomes
                         adapter = new ArrayAdapter<String>(getContext(),
                                 R.layout.layout_lista,
                                 nomesReceitas);
+
                         //Adicionar os itens na lista usando o método setAdapter
                         listaReceitas.setAdapter(adapter);
+
+
+                        //Adicionar os itens na lista usando o método setAdapter
+                        listaReceitas.setAdapter(adapter);
+
+                        //Listener para abrir as receitas numa outra tela ao clicar
+                        listaReceitas.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                            @Override
+                            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                                //Criando as variáveis que irão guardar as informações
+                                //da receita de acordo com o índice delas na lista
+                                String nomeReceita = nomesReceitas.get(i);
+                                List<String> modoPreparo = modo_Preparo.get(i);
+                                List<String> listaIngredientes = ingredientes.get(i);
+
+                                //Criando os objetos do Fragment e do Bundle
+                                TelaReceita telaReceita = new TelaReceita();
+                                Bundle bundle = new Bundle();
+
+                                //Atribuindo valores às variáveis do bundle
+                                bundle.putString("nome", nomeReceita);
+                                bundle.putStringArrayList("modoPreparo", (ArrayList<String>) modoPreparo);
+                                bundle.putStringArrayList("listaIngredientes", (ArrayList<String>) listaIngredientes);
+                                telaReceita.setArguments(bundle);
+
+                                //Setando o novo Fragment
+                                FragmentManager manager = getFragmentManager();
+                                manager.beginTransaction().replace(R.id.frameLayout, telaReceita, null).addToBackStack(null).commit();
+                            }
+                        });
 
                         //Limpando a lista de receitas após a pesquisa
                         lReceitas.clear();

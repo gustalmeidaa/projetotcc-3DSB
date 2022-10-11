@@ -4,13 +4,10 @@ import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Bundle;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,23 +16,16 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipGroup;
-import com.google.firebase.FirebaseNetworkException;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
-import com.google.firestore.v1.Document;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -97,6 +87,7 @@ public class PerfilUsuario extends Fragment {
         EditText edAlergenico = v.findViewById(R.id.edAlergenico);
         ChipGroup grupoIngredientes = v.findViewById(R.id.grupoIngredientes);
         Button adicionarChip = v.findViewById(R.id.btAdicionarChip);
+        Button btAlterarDados = v.findViewById(R.id.btAlterarDados);
 
         //Chamando o método exibir alergênicos para mostrar ao usuário o que já foi cadastrado
         //no banco de dados
@@ -125,6 +116,17 @@ public class PerfilUsuario extends Fragment {
                 //Retornando ao Fragment da página de "Autenticação"
                 FragmentManager manager = getFragmentManager();
                 manager.beginTransaction().replace(R.id.frameLayout, autenticacao, null).commit();
+            }
+        });
+
+        btAlterarDados.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AlterarDados alterarDados = new AlterarDados();
+
+                //Direcionando ao Fragment da página de "Alterar Dados"
+                FragmentManager manager = getFragmentManager();
+                manager.beginTransaction().replace(R.id.frameLayout, alterarDados, null).addToBackStack(null).commit();
             }
         });
 

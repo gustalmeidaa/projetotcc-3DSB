@@ -8,7 +8,6 @@ import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
-import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -71,6 +70,7 @@ public class Autenticacao extends Fragment {
         //Criando os objetos do componente da tela
         EditText edEmail = v.findViewById(R.id.edEmail);
         EditText edSenha = v.findViewById(R.id.edSenha);
+        TextView txtMudarSenha = v.findViewById(R.id.txtMudarSenha);
         TextView cad = v.findViewById(R.id.textViewCad);
         Button btEntrar = v.findViewById(R.id.btEntrar);
         CardView cardView = v.findViewById(R.id.cardView);
@@ -122,6 +122,17 @@ public class Autenticacao extends Fragment {
                 } catch (Exception ex) {
                     Toast.makeText(v.getContext(), "Erro inesperado", Toast.LENGTH_LONG).show();
                 }
+            }
+        });
+
+
+        txtMudarSenha.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //Setando o novo Fragment
+                AlterarDados alterarDados = new AlterarDados();
+                FragmentManager manager = getFragmentManager();
+                manager.beginTransaction().replace(R.id.frameLayout, alterarDados, null).addToBackStack(null).commit();
             }
         });
 

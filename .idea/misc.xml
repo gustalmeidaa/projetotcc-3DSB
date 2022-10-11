@@ -3,20 +3,17 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/aluno/Documents/GHA/ProjetoTCC/app/src/main/res/drawable/container_components.xml" value="0.2985" />
-        <entry key="..\:/Users/aluno/Documents/GHA/ProjetoTCC/app/src/main/res/drawable/ic_launcher_background.xml" value="0.196" />
-        <entry key="..\:/Users/aluno/Documents/GHA/ProjetoTCC/app/src/main/res/drawable/linha.xml" value="0.2985" />
-        <entry key="..\:/Users/aluno/Documents/GHA/ProjetoTCC/app/src/main/res/layout/activity_cadastro.xml" value="0.36666666666666664" />
-        <entry key="..\:/Users/aluno/Documents/GHA/ProjetoTCC/app/src/main/res/layout/activity_tela_inicial.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/Gustavo/Documents/INDMO/ProjetoTCC/app/src/main/res/layout/activity_cadastro.xml" value="0.17074275362318841" />
+        <entry key="..\:/Users/Gustavo/Documents/INDMO/ProjetoTCC/app/src/main/res/layout/fragment_alterar_dados.xml" value="0.25" />
+        <entry key="..\:/Users/Gustavo/Documents/INDMO/ProjetoTCC/app/src/main/res/layout/fragment_perfil_usuario.xml" value="0.33" />
+        <entry key="..\:/Users/aluno/Documents/GHA/ProjetoTCC/app/src/main/res/layout/activity_cadastro.xml" value="0.33" />
+        <entry key="..\:/Users/aluno/Documents/GHA/ProjetoTCC/app/src/main/res/layout/activity_tela_inicial.xml" value="0.18958333333333333" />
+        <entry key="..\:/Users/aluno/Documents/GHA/ProjetoTCC/app/src/main/res/layout/fragment_alterar_dados.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/aluno/Documents/GHA/ProjetoTCC/app/src/main/res/layout/fragment_alterar_senha.xml" value="0.33" />
         <entry key="..\:/Users/aluno/Documents/GHA/ProjetoTCC/app/src/main/res/layout/fragment_autenticacao.xml" value="0.33" />
-        <entry key="..\:/Users/aluno/Documents/GHA/ProjetoTCC/app/src/main/res/layout/fragment_perfil_usuario.xml" value="0.358695652173913" />
-        <entry key="..\:/Users/aluno/Documents/GHA/ProjetoTCC/app/src/main/res/layout/fragment_receitas.xml" value="0.5" />
-        <entry key="..\:/Users/aluno/Documents/GHA/ProjetoTCC/app/src/main/res/layout/fragment_receitas_por_nome.xml" value="0.33" />
-        <entry key="..\:/Users/aluno/Documents/GHA/ProjetoTCC/app/src/main/res/layout/fragment_tela_informacoes.xml" value="0.5" />
-        <entry key="..\:/Users/aluno/Documents/GHA/ProjetoTCC/app/src/main/res/layout/fragment_tela_inicial.xml" value="0.36666666666666664" />
-        <entry key="..\:/Users/aluno/Documents/GHA/ProjetoTCC/app/src/main/res/layout/fragment_tela_receita.xml" value="0.36666666666666664" />
-        <entry key="..\:/Users/aluno/Documents/GHA/ProjetoTCC/app/src/main/res/layout/layout_lista.xml" value="0.36666666666666664" />
-        <entry key="..\:/Users/aluno/Documents/GHA/ProjetoTCC/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.196" />
+        <entry key="..\:/Users/aluno/Documents/GHA/ProjetoTCC/app/src/main/res/layout/fragment_perfil_usuario.xml" value="0.33" />
+        <entry key="..\:/Users/aluno/Documents/GHA/ProjetoTCC/app/src/main/res/layout/fragment_receitas_por_nome.xml" value="0.18958333333333333" />
+        <entry key="..\:/Users/aluno/Documents/GHA/ProjetoTCC/app/src/main/res/layout/fragment_tela_receita.xml" value="0.18958333333333333" />
       </map>
     </option>
   </component>
