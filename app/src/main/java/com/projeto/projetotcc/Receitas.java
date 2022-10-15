@@ -206,7 +206,9 @@ public class Receitas extends Fragment {
             chip.setOnCloseIconClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+                    String ingrediente = chip.getText().toString();
                     grupoIngredientes.removeView(chip);
+                    listaIngredientes.remove(ingrediente);
                 }
             });
             grupoIngredientes.addView(chip);
@@ -253,8 +255,14 @@ public class Receitas extends Fragment {
                 ingrediente.setText(classes[maxPos]);
                 //Configurando o tratamento da string "ingredientes" para estruturarmos o chip
                 String ingredientes = ingrediente.getText().toString().toLowerCase();
-                //Chamando o método de estruturação do chip passando como parâmetro a string "ingredientes"
-                estruturarChip(ingredientes);
+                //Verificando se o ingrediente fotografado já não está inserido
+                if(!listaIngredientes.contains(ingredientes)){
+                    //Chamando o método de estruturação do chip passando como parâmetro a string "ingredientes"
+                    listaIngredientes.add(ingredientes);
+                    estruturarChip(ingredientes);
+                } else{
+                    Toast.makeText(view.getContext(), "Este ingrediente já foi adicionado", Toast.LENGTH_SHORT).show();
+                }
                 //Limpando o input de "ingrediente"
                 ingrediente.setText("");
             }else{
