@@ -248,7 +248,7 @@ public class Receitas extends Fragment {
                     maxPos = i;
                 }
             }
-            String[] classes = {"Amora","Azeite","Banana","Caixa de Leite Integral","Carne","Cebola","Chocolate","Creme de Leite","Fermento","Laranja","Leite Condensado","Linguiça", "Margarina","Negative","Óleo de Soja", "Ovo","Pão Francês","Pimenta","Tomate"};
+            String[] classes = {"Amora","Azeite","Banana","Leite","Carne","Cebola","Chocolate","Creme de Leite","Fermento","Ketchup","Laranja","Leite Condensado","Linguiça","Maionese","Margarina","Molho de Tomate","Morango","Mostarda","Negative","Óleo de Soja", "Ovo","Pão Francês","Pimenta","Queijo Ralado","Tomate","Vinagre"};
             if(maxConfidence >= 0.80) {
                 ingrediente.setText(classes[maxPos]);
                 //Configurando o tratamento da string "ingredientes" para estruturarmos o chip
