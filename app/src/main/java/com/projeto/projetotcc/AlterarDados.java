@@ -122,15 +122,13 @@ public class AlterarDados extends Fragment {
                     }
                 });
             }
-             else {
-
-            }
         } catch (Exception o){
             Toast.makeText(view.getContext(), "" + o, Toast.LENGTH_SHORT).show();
         }
 
         try{
             if(usuario.getCurrentUser() == null){
+                txtSenha.setVisibility(view.INVISIBLE);
                 btEnviarEmail.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -147,7 +145,7 @@ public class AlterarDados extends Fragment {
                 });
             }
         } catch (Exception g){
-            g.printStackTrace();
+            Toast.makeText(view.getContext(), "" + g, Toast.LENGTH_SHORT).show();
         }
 
         return view;
@@ -185,7 +183,7 @@ public class AlterarDados extends Fragment {
                 }
             });
         } catch (Exception e){
-            e.printStackTrace();
+            Toast.makeText(view.getContext(), "" + e, Toast.LENGTH_SHORT).show();
         }
 
     }

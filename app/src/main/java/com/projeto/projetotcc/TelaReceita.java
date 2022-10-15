@@ -1,5 +1,7 @@
 package com.projeto.projetotcc;
 
+import android.content.res.ColorStateList;
+import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -18,7 +20,6 @@ import android.widget.Toast;
 import java.util.List;
 
 public class TelaReceita extends Fragment {
-
     View view;
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
@@ -74,8 +75,13 @@ public class TelaReceita extends Fragment {
                     R.layout.layout_lista,
                     ingredientes);
             listarInformacoes.setAdapter(adapter);
-
-
+            listarInformacoes.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                    Toast.makeText(view.getContext(), "" + i, Toast.LENGTH_SHORT).show();
+                    listarInformacoes.getChildAt(i).setBackgroundColor(Color.rgb(255, 0, 0));
+                }
+            });
 
             //Método para alternar a lista entre "Ingredientes" e "Modo de Preparo"
             alternarModo.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -92,7 +98,8 @@ public class TelaReceita extends Fragment {
                         listarInformacoes.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                             @Override
                             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                                String item = (String) adapterView.getItemAtPosition(i);
+                                Toast.makeText(view.getContext(), "" + i, Toast.LENGTH_SHORT).show();
+                                listarInformacoes.getChildAt(i).setBackgroundColor(Color.rgb(255, 0, 0));
                             }
                         });
                     } else {
@@ -102,11 +109,19 @@ public class TelaReceita extends Fragment {
                                 R.layout.layout_lista,
                                 modo);
                         listarInformacoes.setAdapter(adapter);
+                        listarInformacoes.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                            @Override
+                            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                                Toast.makeText(view.getContext(), "" + i, Toast.LENGTH_SHORT).show();
+                                listarInformacoes.getChildAt(i).setBackgroundColor(Color.rgb(255, 0, 0));
+                            }
+                        });
                     }
                 }
             });
 
         } catch (Exception ex){
+            ex.printStackTrace();
             Toast.makeText(getContext(), "" + ex, Toast.LENGTH_SHORT).show();
         }
         return view;
