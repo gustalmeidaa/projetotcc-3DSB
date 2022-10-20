@@ -131,6 +131,7 @@ public class AlterarDados extends Fragment {
 
         try{
             if(usuario.getCurrentUser() == null){
+                txtSenha.setVisibility(view.INVISIBLE);
                 btEnviarEmail.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {

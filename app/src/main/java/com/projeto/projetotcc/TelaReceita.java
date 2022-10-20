@@ -1,9 +1,12 @@
 package com.projeto.projetotcc;
 
+import android.content.res.ColorStateList;
+import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -75,8 +78,6 @@ public class TelaReceita extends Fragment {
                     ingredientes);
             listarInformacoes.setAdapter(adapter);
 
-
-
             //Método para alternar a lista entre "Ingredientes" e "Modo de Preparo"
             alternarModo.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                 @Override
@@ -89,12 +90,6 @@ public class TelaReceita extends Fragment {
                                 R.layout.layout_lista,
                                 ingredientes);
                         listarInformacoes.setAdapter(adapter);
-                        listarInformacoes.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                            @Override
-                            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                                String item = (String) adapterView.getItemAtPosition(i);
-                            }
-                        });
                     } else {
                         //Caso o switch esteja "selecionado", será listado o modo de preparo.
                         nomeSwitch.setText("Modo de Preparo");
@@ -105,7 +100,6 @@ public class TelaReceita extends Fragment {
                     }
                 }
             });
-
         } catch (Exception ex){
             Toast.makeText(getContext(), "" + ex, Toast.LENGTH_SHORT).show();
         }

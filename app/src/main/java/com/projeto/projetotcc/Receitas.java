@@ -1,7 +1,12 @@
 package com.projeto.projetotcc;
 
+import static android.app.Activity.RESULT_OK;
+
+import android.content.Intent;
 import android.content.res.ColorStateList;
+import android.graphics.Bitmap;
 import android.graphics.Color;
+import android.media.ThumbnailUtils;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -9,6 +14,8 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
+import android.provider.MediaStore;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +23,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -31,14 +39,24 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.projeto.projetotcc.ml.Model;
 
+import org.tensorflow.lite.DataType;
+import org.tensorflow.lite.support.tensorbuffer.TensorBuffer;
+
+import java.io.IOException;
+import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class Receitas extends Fragment {
     View view;
+    ImageView fotoIngrediente;
+    int imageSize = 300;
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
+    private EditText ingrediente;
     private List<String> listaIngredientes = new ArrayList<>();
     private List<Receita> lReceitas = new ArrayList<>();
     private List<String> lAlergenicos = new ArrayList<>();
@@ -80,9 +98,19 @@ public class Receitas extends Fragment {
         view = inflater.inflate(R.layout.fragment_receitas, container, false);
         Button pesquisar = view.findViewById(R.id.btPesquisar);
         Button adicionarChip = view.findViewById(R.id.btAdicionarChip);
-        EditText ingrediente = view.findViewById(R.id.txtIngredientes);
+        ingrediente = view.findViewById(R.id.txtIngredientes);
         ChipGroup grupoIngredientes = view.findViewById(R.id.grupoIngredientes);
         TextView pesquisarPorNome = view.findViewById(R.id.txtPesquisaPorNome);
+        ImageView camera = view.findViewById(R.id.camera);
+        fotoIngrediente = view.findViewById(R.id.fotoIngrediente);
+
+        camera.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent cInt = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                startActivityForResult(cInt, 3);
+            }
+        });
 
         pesquisarPorNome.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -109,7 +137,6 @@ public class Receitas extends Fragment {
                                     listaAlergenicos.add(alerg);
                                 }
                             }
-
                         }
                     });
                 }
@@ -159,32 +186,109 @@ public class Receitas extends Fragment {
                 }
             }
         });
-
         return view;
     }
 
     private void estruturarChip(String ingredientes){
         try{
-            grupoIngredientes = view.findViewById(R.id.grupoIngredientes);
-            Chip chip = new Chip(getContext());
-            chip.setText(ingredientes);
-            chip.setChipIconResource(R.drawable.ic_receitas);
-            chip.setTextColor(ColorStateList.valueOf(Color.BLACK));
-            chip.setChipBackgroundColor(ColorStateList.valueOf(Color.rgb(168, 142, 114)));
-            chip.setCloseIconVisible(true);
-            chip.setX(30);
-            //Método para remover o chip do ingrediente caso o "x" seja pressionado
-            chip.setOnCloseIconClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    grupoIngredientes.removeView(chip);
-                }
-            });
-            grupoIngredientes.addView(chip);
+            if(!listaIngredientes.contains(ingredientes)){
+                grupoIngredientes = view.findViewById(R.id.grupoIngredientes);
+                Chip chip = new Chip(getContext());
+                chip.setText(ingredientes);
+                chip.setChipIconResource(R.drawable.ic_receitas);
+                chip.setTextColor(ColorStateList.valueOf(Color.BLACK));
+                chip.setChipBackgroundColor(ColorStateList.valueOf(Color.rgb(168, 142, 114)));
+                chip.setCloseIconVisible(true);
+                chip.setX(30);
+                //Método para remover o chip do ingrediente caso o "x" seja pressionado
+                chip.setOnCloseIconClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        String ingrediente = chip.getText().toString();
+                        grupoIngredientes.removeView(chip);
+                        listaIngredientes.remove(ingrediente);
+                    }
+                });
+                grupoIngredientes.addView(chip);
+            } else {
+                Log.e("LISTA >> ", listaIngredientes.get(0));
+                Toast.makeText(view.getContext(), "DEU RUIM", Toast.LENGTH_SHORT).show();
+            }
+
         } catch (Exception ex){
             ex.printStackTrace();
             Toast.makeText(view.getContext(), "" + ex, Toast.LENGTH_SHORT).show();
 
+        }
+    }
+
+    //Método para realizar a classificação da imagem do ingrediente
+    public void classificarImagem(Bitmap image){
+        try {
+            Model model = Model.newInstance(view.getContext());
+            TensorBuffer inputFeature0 = TensorBuffer.createFixedSize(new int[]{1, 300, 300, 3}, DataType.FLOAT32);
+            ByteBuffer byteBuffer = ByteBuffer.allocateDirect(4 * imageSize * imageSize * 3);
+            byteBuffer.order(ByteOrder.nativeOrder());
+            int[] intValues = new int[imageSize * imageSize];
+            image.getPixels(intValues, 0, image.getWidth(), 0, 0, image.getWidth(), image.getHeight());
+            int pixel = 0;
+            for(int i = 0; i < imageSize; i ++){
+                for(int j = 0; j < imageSize; j++){
+                    int val = intValues[pixel++]; // RGB
+                    byteBuffer.putFloat(((val >> 16) & 0xFF) * (1.f / 1));
+                    byteBuffer.putFloat(((val >> 8) & 0xFF) * (1.f / 1));
+                    byteBuffer.putFloat((val & 0xFF) * (1.f / 1));
+                }
+            }
+            inputFeature0.loadBuffer(byteBuffer);
+            Model.Outputs outputs = model.process(inputFeature0);
+            TensorBuffer outputFeature0 = outputs.getOutputFeature0AsTensorBuffer();
+            float[] confidences = outputFeature0.getFloatArray();
+            int maxPos = 0;
+            float maxConfidence = 0;
+            for (int i = 0; i < confidences.length; i++) {
+                if (confidences[i] > maxConfidence) {
+                    maxConfidence = confidences[i];
+                    maxPos = i;
+                }
+            }
+            String[] classes = {"Amora","Azeite","Banana","Leite","Carne","Cebola","Chocolate","Creme de Leite","Fermento","Ketchup","Laranja","Leite Condensado","Linguiça","Maionese","Margarina","Molho de Tomate","Morango","Mostarda","Negative","Óleo de Soja", "Ovo","Pão Francês","Pimenta","Queijo Ralado","Tomate","Vinagre"};
+            if(maxConfidence >= 0.80) {
+                ingrediente.setText(classes[maxPos]);
+                //Configurando o tratamento da string "ingredientes" para estruturarmos o chip
+                String ingredientes = ingrediente.getText().toString().toLowerCase();
+                //Verificando se o ingrediente fotografado já não está inserido
+                if(!listaIngredientes.contains(ingredientes)){
+                    //Chamando o método de estruturação do chip passando como parâmetro a string "ingredientes"
+                    estruturarChip(ingredientes);
+                    listaIngredientes.add(ingredientes);
+                } else{
+                    Toast.makeText(view.getContext(), "Este ingrediente já foi adicionado", Toast.LENGTH_SHORT).show();
+                }
+                //Limpando o input de "ingrediente"
+                ingrediente.setText("");
+            }else{
+                Toast.makeText(view.getContext(), "Ingrediente não identificado!", Toast.LENGTH_SHORT).show();
+            }
+            model.close();
+        } catch (IOException e) {
+            // TODO Handle the exception
+        }
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(resultCode == RESULT_OK){
+            if(requestCode == 3){
+                Bitmap image = (Bitmap) data.getExtras().get("data");
+                int dimension = Math.min(image.getWidth(), image.getHeight());
+                image = ThumbnailUtils.extractThumbnail(image, dimension, dimension);
+                fotoIngrediente.setImageBitmap(image);
+                image = Bitmap.createScaledBitmap(image, imageSize, imageSize, false);
+                //Chamando o método de classificação da imagem do ingrediente
+                classificarImagem(image);
+            }
         }
     }
 

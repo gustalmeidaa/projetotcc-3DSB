@@ -51,7 +51,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
-        android:digits="qwertyuiopasdfghjklzxcvbnmçúáãé ÉÃÁÚÇQWERTYUIOPASDFGHJKLZXCVBNM"
+        android:digits="qwertyuiopasdfghjklzxcvbnmçúáãéó ÓÉÃÁÚÇQWERTYUIOPASDFGHJKLZXCVBNM"
         android:ems="10"
         android:hint="Ingredientes..."
         android:inputType="textPersonName"
@@ -169,6 +169,27 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/listaReceitas"
         app:layout_constraintVertical_bias="0.450" />
+
+    <ImageView
+        android:id="@+id/camera"
+        android:layout_width="62dp"
+        android:layout_height="52dp"
+        android:layout_marginBottom="28dp"
+        android:src="@drawable/ic_camera"
+        app:layout_constraintBottom_toTopOf="@+id/cardView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.578"
+        app:layout_constraintStart_toEndOf="@+id/txtIngredientes" />
+
+    <ImageView
+        android:id="@+id/fotoIngrediente"
+        android:layout_width="61dp"
+        android:layout_height="53dp"
+        android:layout_marginBottom="28dp"
+        app:layout_constraintBottom_toTopOf="@+id/cardView2"
+        app:layout_constraintEnd_toStartOf="@+id/txtIngredientes"
+        app:layout_constraintHorizontal_bias="0.75"
+        app:layout_constraintStart_toStartOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

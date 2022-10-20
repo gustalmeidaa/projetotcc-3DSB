@@ -34,12 +34,13 @@
 
         <Button
             android:id="@+id/btCadastrar"
+            android:fontFamily="@font/farro_medium"
             style="?attr/borderlessButtonStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:backgroundTint="#D8BC9E"
             android:shadowColor="#D8BC9E"
-            android:text="Cadastrar"
+            android:text="cadastrar"
             android:textColor="#000000"
             android:textSize="20sp" />
     </androidx.cardview.widget.CardView>

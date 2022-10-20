@@ -29,8 +29,35 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="2811dp"
-                tools:layout_editor_absoluteX="8dp"
-                tools:layout_editor_absoluteY="0dp">
+                tools:layout_editor_absoluteX="3dp"
+                tools:layout_editor_absoluteY="-1dp">
+
+                <View
+                    android:id="@+id/view18"
+                    android:layout_width="351dp"
+                    android:layout_height="97dp"
+                    android:layout_marginTop="18dp"
+                    android:background="@drawable/info_branco"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.521"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.325" />
+
+                <TextView
+                    android:id="@+id/textView16"
+                    android:layout_width="307dp"
+                    android:layout_height="95dp"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="8dp"
+                    android:fontFamily="@font/acme"
+                    android:text="Simples assim, depois disso aparecerá as receitas existentes no nosso aplicativo e basta você escolher a que deseja! "
+                    android:textAlignment="center"
+                    android:textColor="#000000"
+                    android:textSize="18sp"
+                    app:layout_constraintStart_toStartOf="@+id/view18"
+                    app:layout_constraintTop_toTopOf="@+id/view18" />
 
                 <View
                     android:id="@+id/quadros5"
@@ -39,10 +66,9 @@
                     android:background="@drawable/info_branco"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.508"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/quadros4"
-                    app:layout_constraintVertical_bias="0.041" />
+                    app:layout_constraintVertical_bias="0.054" />
 
                 <TextView
                     android:id="@+id/textView30"
@@ -50,6 +76,7 @@
                     android:layout_height="65dp"
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="4dp"
+                    android:fontFamily="@font/acme"
                     android:text="Para você filtrar as receitas, deve cadastrar os ingredientes que não deseja. "
                     android:textAlignment="center"
                     android:textColor="#000000"
@@ -61,13 +88,14 @@
                     android:id="@+id/quadro5"
                     android:layout_width="379dp"
                     android:layout_height="177dp"
+                    android:layout_marginTop="5dp"
                     android:background="@drawable/info_branco"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.609"
+                    app:layout_constraintHorizontal_bias="0.497"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/quadros4"
-                    app:layout_constraintVertical_bias="0.51" />
+                    app:layout_constraintVertical_bias="0.651" />
 
                 <TextView
                     android:id="@+id/textView28"
@@ -75,6 +103,7 @@
                     android:layout_height="158dp"
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="8dp"
+                    android:fontFamily="@font/acme"
                     android:text="Na última tela você terá a opção de cadastrar os ingredientes que não deseja, deve realizar o mesmo processo que faz para pesquisar, ou seja, adicionar um ingrediente de cada vez. Não se preocupe! Se mudar de ideia, será possível remover o ingrediente adicionado. "
                     android:textAlignment="center"
                     android:textColor="#000000"
@@ -114,6 +143,7 @@
                     android:layout_height="72dp"
                     android:layout_marginStart="12dp"
                     android:layout_marginTop="4dp"
+                    android:fontFamily="@font/acme"
                     android:text="ATENÇÃO: essa opção só é valida à usuários que estão logados. "
                     android:textAlignment="center"
                     android:textColor="#000000"
@@ -128,17 +158,18 @@
                     android:background="@drawable/info_quadros"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.448"
+                    app:layout_constraintHorizontal_bias="0.548"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView24"
-                    app:layout_constraintVertical_bias="0.021" />
+                    app:layout_constraintVertical_bias="0.0" />
 
                 <TextView
                     android:id="@+id/textView26"
                     android:layout_width="215dp"
                     android:layout_height="91dp"
-                    android:layout_marginStart="40dp"
-                    android:layout_marginTop="4dp"
+                    android:layout_marginStart="36dp"
+                    android:layout_marginTop="12dp"
+                    android:fontFamily="@font/acme"
                     android:text="É bem simples! Imagino que já esteja cadastrado, se não está, deve fazer isso antes!  "
                     android:textAlignment="center"
                     android:textColor="#000000"
@@ -168,17 +199,18 @@
                     android:background="@drawable/info_quadros"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.556"
+                    app:layout_constraintHorizontal_bias="0.566"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/quadros3"
-                    app:layout_constraintVertical_bias="0.017" />
+                    app:layout_constraintVertical_bias="0.029" />
 
                 <TextView
                     android:id="@+id/textView25"
                     android:layout_width="307dp"
                     android:layout_height="160dp"
-                    android:layout_marginStart="24dp"
+                    android:layout_marginStart="28dp"
                     android:layout_marginTop="12dp"
+                    android:fontFamily="@font/acme"
                     android:text="Basta você ir a página de login (a última opção) e colocar seus dados cadastrados, após isso você deve selecionar o botão “Login” e pronto! "
                     android:textAlignment="center"
                     android:textColor="#000000"
@@ -218,7 +250,8 @@
                     android:layout_width="307dp"
                     android:layout_height="160dp"
                     android:layout_marginStart="24dp"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginTop="24dp"
+                    android:fontFamily="@font/acme"
                     android:text="Na página de login tem uma opção escrita “Ainda não tem login? Cadastre-se”, basta você selecionar essa opção e preencher os dados com suas informações, depois disso selecione o botão “Cadastrar”, e pronto! Está cadastrado!"
                     android:textAlignment="center"
                     android:textColor="#000000"
@@ -242,8 +275,9 @@
                     android:id="@+id/textView23"
                     android:layout_width="252dp"
                     android:layout_height="108dp"
-                    android:layout_marginStart="24dp"
-                    android:layout_marginTop="4dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="16dp"
+                    android:fontFamily="@font/acme"
                     android:text="  É importante saber que após do cadastro você deve voltar e realizar o seu login, mas não se preocupe! Suas informações já estarão salvas. "
                     android:textAlignment="center"
                     android:textColor="#000000"
@@ -255,25 +289,56 @@
                     android:id="@+id/quadros"
                     android:layout_width="284dp"
                     android:layout_height="76dp"
+                    android:layout_marginTop="15dp"
                     android:background="@drawable/info_quadros"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.495"
+                    app:layout_constraintHorizontal_bias="0.539"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/quadro"
-                    app:layout_constraintVertical_bias="0.008" />
+                    app:layout_constraintVertical_bias="0.0" />
 
                 <View
                     android:id="@+id/view9"
                     android:layout_width="212dp"
                     android:layout_height="67dp"
+                    android:layout_marginTop="9dp"
                     android:background="@drawable/info_branco"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.522"
+                    app:layout_constraintHorizontal_bias="0.502"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/view8"
-                    app:layout_constraintVertical_bias="0.003" />
+                    app:layout_constraintVertical_bias="0.002" />
+
+                <TextView
+                    android:id="@+id/textView10"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/knewave"
+                    android:text="Benefícios de cadastro"
+                    android:textColor="#C39B7F"
+                    android:textSize="28sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.129"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/view18"
+                    app:layout_constraintVertical_bias="0.027" />
+
+                <TextView
+                    android:id="@+id/textView15"
+                    android:layout_width="151dp"
+                    android:layout_height="53dp"
+                    android:layout_marginStart="28dp"
+                    android:layout_marginTop="12dp"
+                    android:fontFamily="@font/acme"
+                    android:text="5 – Por fim pesquise a receita"
+                    android:textAlignment="center"
+                    android:textColor="#000000"
+                    android:textSize="18sp"
+                    app:layout_constraintStart_toStartOf="@+id/view9"
+                    app:layout_constraintTop_toTopOf="@+id/view9" />
 
                 <TextView
                     android:id="@+id/textView5"
@@ -295,24 +360,13 @@
                     android:layout_width="212dp"
                     android:layout_height="67dp"
                     android:background="@drawable/info_branco"
+                    android:layout_marginTop="6dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.501"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView12"
                     app:layout_constraintVertical_bias="0.005" />
-
-                <View
-                    android:id="@+id/view18"
-                    android:layout_width="351dp"
-                    android:layout_height="97dp"
-                    android:background="@drawable/info_branco"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.518"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.324" />
 
                 <View
                     android:id="@+id/quadro1"
@@ -330,6 +384,7 @@
                     android:id="@+id/view3"
                     android:layout_width="212dp"
                     android:layout_height="64dp"
+                    android:layout_marginTop="0dp"
                     android:background="@drawable/info_branco"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -353,21 +408,6 @@
                     app:layout_constraintTop_toBottomOf="@+id/view"
                     app:layout_constraintVertical_bias="0.011" />
 
-                <TextView
-                    android:id="@+id/textView10"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/knewave"
-                    android:text="Benefícios de cadastro"
-                    android:textColor="#C39B7F"
-                    android:textSize="28sp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.101"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/view18"
-                    app:layout_constraintVertical_bias="0.022" />
-
                 <View
                     android:id="@+id/view"
                     android:layout_width="360dp"
@@ -384,25 +424,27 @@
                     android:id="@+id/quadro"
                     android:layout_width="350dp"
                     android:layout_height="176dp"
+                    android:layout_marginTop="3dp"
                     android:background="@drawable/info_quadros"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.565"
+                    app:layout_constraintHorizontal_bias="0.566"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/view6"
-                    app:layout_constraintVertical_bias="0.013" />
+                    app:layout_constraintVertical_bias="0.007" />
 
                 <View
                     android:id="@+id/view6"
                     android:layout_width="280dp"
                     android:layout_height="77dp"
+                    android:layout_marginTop="5dp"
                     android:background="@drawable/info_quadros"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.495"
+                    app:layout_constraintHorizontal_bias="0.564"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/quadro2"
-                    app:layout_constraintVertical_bias="0.007" />
+                    app:layout_constraintVertical_bias="0.009" />
 
                 <TextView
                     android:id="@+id/textView7"
@@ -421,10 +463,11 @@
 
                 <TextView
                     android:id="@+id/textView6"
-                    android:layout_width="369dp"
-                    android:layout_height="147dp"
-                    android:layout_marginStart="4dp"
+                    android:layout_width="347dp"
+                    android:layout_height="155dp"
+                    android:layout_marginStart="8dp"
                     android:layout_marginTop="8dp"
+                    android:fontFamily="@font/acme"
                     android:text="Desenvolvemos o aplicativo “Try \non – receitas” para facilitar suas buscas de receitas, aqui você pode pesquisar os ingredientes você tem na sua casa e vai aparecer pra você somente receitas que tenham esses ingredientes! \nBem mais fácil não é mesmo?"
                     android:textAlignment="center"
                     android:textColor="#000000"
@@ -439,10 +482,9 @@
                     android:background="@drawable/info_branco"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.529"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/view7"
-                    app:layout_constraintVertical_bias="0.004" />
+                    app:layout_constraintVertical_bias="0.007" />
 
                 <TextView
                     android:id="@+id/textView4"
@@ -450,6 +492,7 @@
                     android:layout_height="48dp"
                     android:layout_marginStart="32dp"
                     android:layout_marginTop="8dp"
+                    android:fontFamily="@font/acme"
                     android:text="1 – Vá na tela de pesquisar receitas"
                     android:textAlignment="center"
                     android:textColor="#000000"
@@ -461,20 +504,21 @@
                     android:id="@+id/view5"
                     android:layout_width="212dp"
                     android:layout_height="67dp"
+                    android:layout_marginTop="1dp"
                     android:background="@drawable/info_branco"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.501"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/view3"
-                    app:layout_constraintVertical_bias="0.006" />
+                    app:layout_constraintVertical_bias="0.005" />
 
                 <TextView
                     android:id="@+id/textView12"
                     android:layout_width="161dp"
                     android:layout_height="56dp"
                     android:layout_marginStart="24dp"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginTop="4dp"
+                    android:fontFamily="@font/acme"
                     android:text="2 – Digite um ingrediente que tem"
                     android:textAlignment="center"
                     android:textColor="#000000"
@@ -488,6 +532,7 @@
                     android:layout_height="55dp"
                     android:layout_marginStart="28dp"
                     android:layout_marginTop="12dp"
+                    android:fontFamily="@font/acme"
                     android:text="3 – Adicione o ingrediente"
                     android:textAlignment="center"
                     android:textColor="#000000"
@@ -500,26 +545,14 @@
                     android:layout_width="186dp"
                     android:layout_height="68dp"
                     android:layout_marginStart="12dp"
-                    android:layout_marginTop="4dp"
+                    android:layout_marginTop="2dp"
+                    android:fontFamily="@font/acme"
                     android:text="4 – Repita o processo para cada ingrediente que deseja"
                     android:textAlignment="center"
                     android:textColor="#000000"
                     android:textSize="18sp"
                     app:layout_constraintStart_toStartOf="@+id/view8"
                     app:layout_constraintTop_toTopOf="@+id/view8" />
-
-                <TextView
-                    android:id="@+id/textView15"
-                    android:layout_width="151dp"
-                    android:layout_height="53dp"
-                    android:layout_marginStart="24dp"
-                    android:layout_marginTop="12dp"
-                    android:text="5 – Por fim pesquise a receita"
-                    android:textAlignment="center"
-                    android:textColor="#000000"
-                    android:textSize="18sp"
-                    app:layout_constraintStart_toStartOf="@+id/view9"
-                    app:layout_constraintTop_toTopOf="@+id/view9" />
 
                 <View
                     android:id="@+id/view4"
@@ -539,6 +572,7 @@
                     android:layout_height="72dp"
                     android:layout_marginStart="36dp"
                     android:layout_marginTop="8dp"
+                    android:fontFamily="@font/acme"
                     android:text="O uso do aplicativo é bem simples, aqui vai um passo a passo:"
                     android:textAlignment="center"
                     android:textColor="#000000"
@@ -553,6 +587,7 @@
                     android:layout_height="84dp"
                     android:layout_marginStart="12dp"
                     android:layout_marginTop="4dp"
+                    android:fontFamily="@font/acme"
                     android:text="Não gosta de algum ingrediente? \nÉ alérgico?\n Não quer algum ingrediente nas suas receitas?"
                     android:textAlignment="center"
                     android:textColor="#000000"
@@ -567,10 +602,11 @@
                     android:background="@drawable/info_quadros"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.495"
+                    android:layout_marginTop="0dp"
+                    app:layout_constraintHorizontal_bias="0.553"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/quadro1"
-                    app:layout_constraintVertical_bias="0.006" />
+                    app:layout_constraintVertical_bias="0.01" />
 
                 <TextView
                     android:id="@+id/textView17"
@@ -578,6 +614,7 @@
                     android:layout_height="67dp"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="16dp"
+                    android:fontFamily="@font/acme"
                     android:text="Você deve ter notado que existe um login aqui certo? "
                     android:textAlignment="center"
                     android:textColor="#000000"
@@ -591,6 +628,7 @@
                     android:layout_height="70dp"
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="4dp"
+                    android:fontFamily="@font/acme"
                     android:text="Somente se você mudar e ideia, então voltaremos a te mostrar as receitas!"
                     android:textAlignment="center"
                     android:textColor="#000000"
@@ -604,6 +642,7 @@
                     android:layout_height="173dp"
                     android:layout_marginStart="24dp"
                     android:layout_marginTop="12dp"
+                    android:fontFamily="@font/acme"
                     android:text="Com o login no aplicativo é possível você filtrar suas receitas, ou seja, os alimentos que você não deseja que apareça nas suas receitas, serão retirados, não mostraremos mais nenhuma receita que tenha o ingrediente que você não quer! "
                     android:textAlignment="center"
                     android:textColor="#000000"
@@ -617,25 +656,13 @@
                     android:layout_height="77dp"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="4dp"
+                    android:fontFamily="@font/acme"
                     android:text="Bom, o cadastro na nossa plataforma traz uma GRANDE vantagem a você! "
                     android:textAlignment="center"
                     android:textColor="#000000"
                     android:textSize="18sp"
                     app:layout_constraintStart_toStartOf="@+id/view6"
                     app:layout_constraintTop_toTopOf="@+id/view6" />
-
-                <TextView
-                    android:id="@+id/textView16"
-                    android:layout_width="307dp"
-                    android:layout_height="95dp"
-                    android:layout_marginStart="12dp"
-                    android:layout_marginTop="4dp"
-                    android:text="Simples assim, depois disso aparecerá as receitas existentes no nosso aplicativo e basta você escolher a que deseja! "
-                    android:textAlignment="center"
-                    android:textColor="#000000"
-                    android:textSize="18sp"
-                    app:layout_constraintStart_toStartOf="@+id/view18"
-                    app:layout_constraintTop_toTopOf="@+id/view18" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </LinearLayout>
