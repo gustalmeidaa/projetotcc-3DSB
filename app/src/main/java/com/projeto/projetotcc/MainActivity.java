@@ -22,6 +22,8 @@ import android.widget.Toast;
 
 import com.projeto.projetotcc.databinding.ActivityMainBinding;
 
+import java.util.Calendar;
+
 public class MainActivity extends AppCompatActivity {
     ActivityMainBinding binding;
     @Override
@@ -32,15 +34,18 @@ public class MainActivity extends AppCompatActivity {
 
         trocarFragment(new TelaInicial());
 
+
         try{
+            Calendar calendario = Calendar.getInstance();
+            calendario.set(Calendar.HOUR_OF_DAY, 18);
+            calendario.set(Calendar.SECOND, 00);
+            calendario.set(Calendar.MINUTE, 01);
             criarCanalNotificacoes();
             AlarmManager notificacao = (AlarmManager) getSystemService(ALARM_SERVICE);
             Intent intent = new Intent(MainActivity.this, NotificacoesReceiver.class);
             PendingIntent telaInicial = PendingIntent.getBroadcast(MainActivity.this, 0, intent, PendingIntent.FLAG_IMMUTABLE);
-            long horaAtual = System.currentTimeMillis();
-            notificacao.set(AlarmManager.RTC_WAKEUP, horaAtual + 120000 , telaInicial);
-            notificacao.notify();
-        } catch (Exception ex){
+            notificacao.setRepeating(AlarmManager.RTC_WAKEUP, calendario.getTimeInMillis(), notificacao.INTERVAL_DAY, telaInicial);
+            } catch (Exception ex){
             ex.printStackTrace();
         }
 
