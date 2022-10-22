@@ -13,10 +13,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ProjetoTCC"
         tools:targetApi="31">
-        <receiver
-            android:name=".NotificacoesReceiver"
-            android:enabled="true"
-            android:exported="true"></receiver>
 
         <activity
             android:name=".Cadastro"
@@ -32,6 +28,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <service
+            android:name=".NotificacaoFirebase"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
 
         <meta-data
             android:name="preloaded_fonts"

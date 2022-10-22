@@ -1,30 +1,22 @@
 package com.projeto.projetotcc;
 
-import androidx.annotation.Nullable;
+import static android.content.ContentValues.TAG;
+
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.NotificationCompat;
-import androidx.core.app.NotificationManagerCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-
-import android.app.AlarmManager;
-import android.app.NotificationChannel;
-import android.app.NotificationManager;
-import android.app.PendingIntent;
-import android.content.BroadcastReceiver;
-import android.content.ComponentName;
-import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
-import android.widget.Toast;
+import android.util.Log;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.messaging.FirebaseMessaging;
 import com.projeto.projetotcc.databinding.ActivityMainBinding;
 
-import java.util.Calendar;
-
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity{
     ActivityMainBinding binding;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,24 +24,27 @@ public class MainActivity extends AppCompatActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        FirebaseMessaging.getInstance().setAutoInitEnabled(true);
+
+        //Recuperando o token para o envio de mensagens
+        FirebaseMessaging.getInstance().getToken()
+                .addOnCompleteListener(new OnCompleteListener<String>() {
+                    @Override
+                    public void onComplete(@NonNull Task<String> task) {
+                        if (!task.isSuccessful()) {
+                            Log.w(TAG, "Falha ao recuperar o token para notificação", task.getException());
+                            return;
+                        }
+
+                        // Capturando o token para mensgaem
+                        String token = task.getResult();
+
+                        // Logando o token no Logcat
+                        Log.e("TOKEN >>>>>>> ", token);
+                    }
+                });
+
         trocarFragment(new TelaInicial());
-
-
-        try{
-            Calendar calendario = Calendar.getInstance();
-            calendario.set(Calendar.HOUR_OF_DAY, 18);
-            calendario.set(Calendar.SECOND, 00);
-            calendario.set(Calendar.MINUTE, 01);
-            criarCanalNotificacoes();
-            AlarmManager notificacao = (AlarmManager) getSystemService(ALARM_SERVICE);
-            Intent intent = new Intent(MainActivity.this, NotificacoesReceiver.class);
-            PendingIntent telaInicial = PendingIntent.getBroadcast(MainActivity.this, 0, intent, PendingIntent.FLAG_IMMUTABLE);
-            notificacao.setRepeating(AlarmManager.RTC_WAKEUP, calendario.getTimeInMillis(), notificacao.INTERVAL_DAY, telaInicial);
-            } catch (Exception ex){
-            ex.printStackTrace();
-        }
-
-
 
         binding.bottomNavigationView.setOnItemSelectedListener(item -> {
             switch (item.getItemId()){
@@ -75,30 +70,5 @@ public class MainActivity extends AppCompatActivity {
         FragmentTransaction fragmentTransaction = manager.beginTransaction();
         fragmentTransaction.replace(R.id.frameLayout, fragment);
         fragmentTransaction.commit();
-    }
-
-    private void criarCanalNotificacoes(){
-        //Verificando a versão do dispositivo (se ela é maior que Android 8.0)
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
-            //Criando um nome pro canal de notificações
-            CharSequence nomeCanal = "Canal do aplicativo TryOn";
-            //Criando uma descrição
-            String descricaoCanal = "Canal criado para notificar os usuários do app TryOn";
-
-            //Cria o canal
-            NotificationChannel canal = new NotificationChannel(
-                    "1000", //É necessário colocar um ID que irá identificar o canal
-                    nomeCanal,
-                    NotificationManager.IMPORTANCE_DEFAULT //Nível de prioridade
-            );
-
-            //Passando a descrição pro canal através do .setDescription()
-            canal.setDescription(descricaoCanal);
-
-            //Transmitindo a configuração para o gerenciador de notificações
-            NotificationManager gerenciador = getSystemService(NotificationManager.class);
-            gerenciador.createNotificationChannel(canal);
-
-        }
     }
 }
