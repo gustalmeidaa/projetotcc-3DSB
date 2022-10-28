@@ -3,12 +3,9 @@ package com.projeto.projetotcc;
 import java.util.List;
 
 public class Usuario {
-
-
     private String nome;
     private String email;
     private List<String> alergenicos;
-
 
     public Usuario(){}
 

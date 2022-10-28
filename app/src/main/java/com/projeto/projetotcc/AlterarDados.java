@@ -30,9 +30,9 @@ import com.google.firebase.firestore.FirebaseFirestore;
  */
 public class AlterarDados extends Fragment {
     View view;
-    FirebaseAuth usuario = FirebaseAuth.getInstance();
+    private FirebaseAuth usuario = FirebaseAuth.getInstance();
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
-    EditText txtEmail;
+    private EditText txtEmail;
 
 
     // TODO: Rename parameter arguments, choose names that match

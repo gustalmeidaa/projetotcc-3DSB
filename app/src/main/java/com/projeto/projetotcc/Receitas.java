@@ -2,6 +2,8 @@ package com.projeto.projetotcc;
 
 import static android.app.Activity.RESULT_OK;
 
+import static androidx.fragment.app.FragmentManager.TAG;
+
 import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Bitmap;
@@ -22,6 +24,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -29,41 +32,52 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipGroup;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.firestore.core.QueryListener;
 import com.projeto.projetotcc.ml.Model;
 
 import org.tensorflow.lite.DataType;
 import org.tensorflow.lite.support.tensorbuffer.TensorBuffer;
 
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 public class Receitas extends Fragment {
     View view;
     ImageView fotoIngrediente;
+    private CheckBox pesqRefinada;
     int imageSize = 300;
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
+    private List<String> listaChips = new ArrayList<>();
     private EditText ingrediente;
     private List<String> listaIngredientes = new ArrayList<>();
     private List<Receita> lReceitas = new ArrayList<>();
     private List<String> lAlergenicos = new ArrayList<>();
     private ChipGroup grupoIngredientes;
     private List<String> listaAlergenicos = new ArrayList<>();
-    FirebaseAuth autenticador = FirebaseAuth.getInstance();
-    String uid;
+    private FirebaseAuth autenticador = FirebaseAuth.getInstance();
+    private String uid;
 
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
@@ -102,6 +116,7 @@ public class Receitas extends Fragment {
         ChipGroup grupoIngredientes = view.findViewById(R.id.grupoIngredientes);
         TextView pesquisarPorNome = view.findViewById(R.id.txtPesquisaPorNome);
         ImageView camera = view.findViewById(R.id.camera);
+        pesqRefinada = view.findViewById(R.id.cbPesquisaRefinada);
         fotoIngrediente = view.findViewById(R.id.fotoIngrediente);
 
         camera.setOnClickListener(new View.OnClickListener() {
@@ -162,24 +177,38 @@ public class Receitas extends Fragment {
                     } else {
                         Toast.makeText(view.getContext(), "Este ingrediente já foi inserido", Toast.LENGTH_SHORT).show();
                     }
-
                 } else {
                     Toast.makeText(view.getContext(), "Adicione um ingrediente válido", Toast.LENGTH_SHORT).show();
                 }
             }
         });
 
+
+
+
         pesquisar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 try{
-                    String ingredientes = "";
-                    for(int i = 0; i < grupoIngredientes.getChildCount(); i++){
-                        Chip chip = (Chip) grupoIngredientes.getChildAt(i);
-                        ingredientes = chip.getText().toString();
-                        listaIngredientes.add(ingredientes);
-                    }
-                    buscarReceitas();
+                    if(!pesqRefinada.isChecked()){
+                        String ingredientes = "";
+                        for(int i = 0; i < grupoIngredientes.getChildCount(); i++){
+                            Chip chip = (Chip) grupoIngredientes.getChildAt(i);
+                            ingredientes = chip.getText().toString();
+                            listaIngredientes.add(ingredientes);
+                        }
+                        buscarReceitas();
+                    } else {
+                        String ingredientes = "";
+                        for(int i = 0; i < grupoIngredientes.getChildCount(); i++){
+                                Chip chip = (Chip) grupoIngredientes.getChildAt(i);
+                                ingredientes = chip.getText().toString();
+                                listaIngredientes.add(ingredientes);
+                                listaChips.add(ingredientes);
+                            }
+                            buscarReceitas();
+                        }
+
                 } catch (Exception ex){
                     ex.printStackTrace();
                     Toast.makeText(view.getContext(), "" + ex, Toast.LENGTH_SHORT).show();
@@ -304,6 +333,7 @@ public class Receitas extends Fragment {
                     List<List<String>> modo_Preparo = new ArrayList<List<String>>();
                     List<List<String>> ingredientes = new ArrayList<List<String>>();
 
+
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         try {
@@ -349,6 +379,19 @@ public class Receitas extends Fragment {
                                     }
                                 }
 
+
+                                if(pesqRefinada.isChecked()){
+                                    for(int i = 0; i < listaChips.size(); i++){
+                                        String comparacao = listaChips.get(i);
+                                            listaDasReceitas = lReceitas.stream().filter(ingredientes -> ingredientes.ingredientes.stream().allMatch(s -> s.contains(comparacao)))
+                                                    .collect(Collectors.toList());
+                                            lReceitas = listaDasReceitas;
+                                        }
+
+                                        Toast.makeText(view.getContext(), "VIM AQUI", Toast.LENGTH_SHORT).show();
+
+                                }
+
                                 //Percorrendo a lista das receitas através de um forEach
                                 for (Receita rec : listaDasReceitas) {
                                     ingredientes.add(rec.ingredientes);
@@ -389,6 +432,8 @@ public class Receitas extends Fragment {
                                         manager.beginTransaction().replace(R.id.frameLayout, telaReceita, null).addToBackStack(null).commit();
                                     }
                                 });
+
+                                listaChips.clear();
 
                                 //Limpando a lista de ingredientes após a finalização do método
                                 listaIngredientes.clear();

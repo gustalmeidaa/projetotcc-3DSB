@@ -42,9 +42,9 @@ public class ReceitasPorNome extends Fragment {
     private List<String> listaNomes = new ArrayList<>();
     private List<Receita> lReceitas = new ArrayList<>();
     private String nomeReceita;
-    FirebaseAuth autenticador = FirebaseAuth.getInstance();
+    private FirebaseAuth autenticador = FirebaseAuth.getInstance();
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
-    String uid;
+    private String uid;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
