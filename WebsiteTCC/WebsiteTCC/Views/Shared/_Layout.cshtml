@@ -1,0 +1,86 @@
+﻿<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Site TCC</title>
+    <link rel="shortcut icon" href="~/img/favicon.png" type="image/x-icon">
+    <link rel="stylesheet" href="~/bootstrap/assets/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="p-3 text-white">
+        <!-- <div class="container">
+             <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+                 <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
+                     <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap"><use xlink:href="#bootstrap"></use></svg>
+                 </a>
+                 <a asp-action="Index"><img src="~/img/logo.png" width="190px" height="100px" /></a>
+
+                 <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
+                     <input type="search" class="form-control form-control-dark" placeholder="Pesquisar..." aria-label="Search">
+                 </form>
+
+                 <div class="dropdown" style="padding-left:590px;">
+                     <button class="btn btn-warning dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" style="background-color: #ffb47b;">
+                         DESCUBRA
+                     </button>
+                     <ul class="dropdown-menu">
+                         <li><a class="dropdown-item" href="#"><img src="~/img/pudim.png" width="33px" height="33px" />Sobremesas</a></li>
+                         <li><a class="dropdown-item" href="#"><img src="~/img/peixe.svg" width="33px" height="33px" />Peixe</a></li>
+                         <li><a class="dropdown-item" href="#"><img src="~/img/drink.svg" width="33px" height="33px" />Bebidas</a></li>
+                         <li><a class="dropdown-item" href="#"><img src="~/img/ovo.svg" width="33px" height="33px" />Ovos e laticinios</a></li>
+                         <li><a class="dropdown-item" href="#"><img src="~/img/carne.svg" width="33px" height="33px" />Carne</a></li>
+                         <li><a class="dropdown-item" href="#"><img src="~/img/cenoura.svg" width="33px" height="33px" />Verduras</a></li>
+                     </ul>
+                 </div>
+
+
+
+             </div>
+         </div>-->
+
+        <nav class="navbar navbar-expand-lg">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#"><img src="~/img/logo.png" height="70" /></a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0 mr-auto">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Descubra
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" href="#"><img src="~/img/pudim.png" width="33px" height="33px" />Sobremesas</a></li>
+                                <li><a class="dropdown-item" href="#"><img src="~/img/peixe.svg" width="33px" height="33px" />Peixe</a></li>
+                                <li><a class="dropdown-item" href="#"><img src="~/img/drink.svg" width="33px" height="33px" />Bebidas</a></li>
+                                <li><a class="dropdown-item" href="#"><img src="~/img/ovo.svg" width="33px" height="33px" />Ovos e laticinios</a></li>
+                                <li><a class="dropdown-item" href="#"><img src="~/img/carne.svg" width="33px" height="33px" />Carne</a></li>
+                                <li><a class="dropdown-item" href="#"><img src="~/img/cenoura.svg" width="33px" height="33px" />Verduras</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <form class="d-flex">
+                        <input class="form-control me-2" type="search" placeholder="Pesquise" aria-label="Search">
+                        <button class="btn btn-outline-success" type="submit">Procure uma receita</button>
+                    </form>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <hr>
+    <br>
+    @RenderBody()
+    <!--Área destinada ao rodapé da página-->
+    <!-- Footer -->
+    
+</body>
+<script type="module" src="~/bootstrap/assets/dist/js/bootstrap.bundle.min.js"></script>
+<script src="~/js/site.js"></script>
+</html>
