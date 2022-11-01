@@ -379,15 +379,14 @@ public class Receitas extends Fragment {
                                     }
                                 }
 
-
                                 if(pesqRefinada.isChecked()){
+
                                     for(int i = 0; i < listaChips.size(); i++){
-                                        String comparacao = listaChips.get(i);
+                                            String comparacao = listaChips.get(i);
                                             listaDasReceitas = lReceitas.stream().filter(ingredientes -> ingredientes.ingredientes.stream().allMatch(s -> s.contains(comparacao)))
                                                     .collect(Collectors.toList());
                                             lReceitas = listaDasReceitas;
-                                        }
-
+                                    }
                                         Toast.makeText(view.getContext(), "VIM AQUI", Toast.LENGTH_SHORT).show();
 
                                 }

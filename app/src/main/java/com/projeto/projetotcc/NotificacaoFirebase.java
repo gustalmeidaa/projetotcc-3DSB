@@ -12,22 +12,25 @@ import com.google.firebase.messaging.RemoteMessage;
 
 public class NotificacaoFirebase extends FirebaseMessagingService {
     @Override
-    public void onMessageReceived(RemoteMessage mensagemNotificacao) {
-        Log.e("Origem: ", mensagemNotificacao.getFrom());
+    public void onMessageReceived(RemoteMessage messageBody) {
+        Log.e("Origem: ", messageBody.getFrom());
 
         //Verificando se de fato há alguma notificação
-        if (mensagemNotificacao.getNotification() != null) {
-            Log.e( "Message Notification Body: ", mensagemNotificacao.getNotification().getBody());
+        if (messageBody.getNotification() != null) {
+            String titulo = messageBody.getNotification().getTitle();
+            String descricao = messageBody.getNotification().getBody();
+            criarCanalNotificacoes(titulo, descricao);
         }
-        criarCanalNotificacoes(mensagemNotificacao.getNotification().getBody());
+
     }
 
-    private void criarCanalNotificacoes(String messageBody){
+    private void criarCanalNotificacoes(String titulo, String descricao){
         //Configurando a notificação
         NotificationCompat.Builder notificacao = new NotificationCompat.Builder(
                 this, //Contexto
                 "1000" //ID do canal de notificação (o mesmo usado no método que cria o canal)
-        ).setContentTitle("Notificação")
+        ).setContentTitle(titulo)
+                .setContentText(descricao)
                 .setAutoCancel(true) //Remove a notificação após tocar/clicar
                 .setPriority(NotificationCompat.PRIORITY_DEFAULT)
                 .setSmallIcon(R.drawable.chef)
