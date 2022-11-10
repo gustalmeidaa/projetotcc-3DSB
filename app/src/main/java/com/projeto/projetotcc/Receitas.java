@@ -343,51 +343,95 @@ public class Receitas extends Fragment {
                                     lReceitas.add(receitas);
                                 }
 
-                                for(int i = 0; i < grupoIngredientes.getChildCount(); i++){
-                                    Chip chip = (Chip) grupoIngredientes.getChildAt(i);
-                                    //Verificando se a lista de alergênicos está vazia
-                                    if(listaAlergenicos.isEmpty()){
-                                        //Se estiver, apenas o valor do ingrediente inserido será
-                                        //analisado em busca de receitas
-                                        String comparacao = chip.getText().toString().toLowerCase();
-                                        listaDasReceitas = lReceitas.stream().filter(ingredientes -> ingredientes.ingredientes.stream().anyMatch(s -> s.contains(comparacao)))
-                                                .collect(Collectors.toList());
-                                        lReceitas = listaDasReceitas;
-                                        if(lReceitas.isEmpty()){
-                                            Toast.makeText(view.getContext().getApplicationContext(), "Nenhuma receita encontrada", Toast.LENGTH_SHORT).show();
-                                        }
-                                    } else {
-                                        //Caso não esteja vazia, será percorrida a lista de alergênicos
-                                        for(int a = 0; a < listaAlergenicos.size(); a++){
-                                            //Atribuindo os alergênicos a variável "alergenico"
-                                            String alergenico = listaAlergenicos.get(a);
+                                if(!pesqRefinada.isChecked()){
+                                    for(int i = 0; i < grupoIngredientes.getChildCount(); i++){
+                                        Chip chip = (Chip) grupoIngredientes.getChildAt(i);
+                                        //Verificando se a lista de alergênicos está vazia
+                                        if(listaAlergenicos.isEmpty()){
+                                            //Se estiver, apenas o valor do ingrediente inserido será
+                                            //analisado em busca de receitas
                                             String comparacao = chip.getText().toString().toLowerCase();
-                                            //Como feito inicialmente, a lista estará recebendo os valores
-                                            //de todas as receitas contendo o(s) ingrediente(s) inseridos
                                             listaDasReceitas = lReceitas.stream().filter(ingredientes -> ingredientes.ingredientes.stream().anyMatch(s -> s.contains(comparacao)))
-                                                    .collect(Collectors.toList());
-                                            lReceitas = listaDasReceitas;
-                                            //Agora, será feita mais uma etapa da filtragem, onde
-                                            //serão removidas as recceitas que contenham algum alergênico
-                                            listaDasReceitas = lReceitas.stream().filter(ingredientes -> ingredientes.ingredientes.stream().noneMatch(s -> s.contains(alergenico)))
                                                     .collect(Collectors.toList());
                                             lReceitas = listaDasReceitas;
                                             if(lReceitas.isEmpty()){
                                                 Toast.makeText(view.getContext().getApplicationContext(), "Nenhuma receita encontrada", Toast.LENGTH_SHORT).show();
                                             }
+                                        } else {
+                                            //Caso não esteja vazia, será percorrida a lista de alergênicos
+                                            for(int a = 0; a < listaAlergenicos.size(); a++){
+                                                //Atribuindo os alergênicos a variável "alergenico"
+                                                String alergenico = listaAlergenicos.get(a);
+                                                String comparacao = chip.getText().toString().toLowerCase();
+                                                //Como feito inicialmente, a lista estará recebendo os valores
+                                                //de todas as receitas contendo o(s) ingrediente(s) inseridos
+                                                listaDasReceitas = lReceitas.stream().filter(ingredientes -> ingredientes.ingredientes.stream().anyMatch(s -> s.contains(comparacao)))
+                                                        .collect(Collectors.toList());
+                                                lReceitas = listaDasReceitas;
+                                                //Agora, será feita mais uma etapa da filtragem, onde
+                                                //serão removidas as recceitas que contenham algum alergênico
+                                                listaDasReceitas = lReceitas.stream().filter(ingredientes -> ingredientes.ingredientes.stream().noneMatch(s -> s.contains(alergenico)))
+                                                        .collect(Collectors.toList());
+                                                lReceitas = listaDasReceitas;
+                                                if(lReceitas.isEmpty()){
+                                                    Toast.makeText(view.getContext().getApplicationContext(), "Nenhuma receita encontrada", Toast.LENGTH_SHORT).show();
+                                                }
+                                            }
                                         }
                                     }
                                 }
 
-                                if(pesqRefinada.isChecked()){
 
-                                    for(int i = 0; i < listaChips.size(); i++){
-                                            String comparacao = listaChips.get(i);
-                                            listaDasReceitas = lReceitas.stream().filter(ingredientes -> ingredientes.ingredientes.stream().allMatch(s -> s.contains(comparacao)))
-                                                    .collect(Collectors.toList());
-                                            lReceitas = listaDasReceitas;
+                                if(pesqRefinada.isChecked()){
+                                    try{
+                                        //Percorrendo a lista das receitas
+                                        for(Receita r : lReceitas){
+                                            //Verificando qual a quantidade de ingredientes presente
+                                            //nas receitas
+                                            int qtd = r.ingredientes.size();
+
+                                            //Criando uma variável de soma que será utilizada
+                                            //posteriormente para verificar a quantidade de ingredientes
+                                            //presentes na receita original
+                                            int soma = 0;
+
+                                            //Criando um array responsável por receber os ingredientes
+                                            //em posições separadas
+                                            String[] ingAux = r.ingredientes.toString().split(",");
+
+                                            //Verificando se a quantidade de ingredientes é menor ou igual
+                                            //a quantidade de ingredientes informados pelo usuário
+                                            if(qtd <= listaChips.size()){
+                                                //Laço utilizado para percorrer todos os ingredientes
+                                                //da receita
+                                                for(int x = 0; x < qtd; x++){
+                                                    //Laço para percorrer todos os ingredientes
+                                                    //informados pelo usuário
+                                                    for(int y = 0; y < listaChips.size(); y++){
+                                                        //Verificando se o array de ingredientes
+                                                        //possui os ingredientes informados pelo usuário
+                                                        if(ingAux[x].contains(listaChips.get(y))){
+                                                            //Incrementando a variável de soma
+                                                            //para mais tarde passar por um processo
+                                                            //de verificação
+                                                            soma++;
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                            //Verificando se a quantidade de ingredientes é menor
+                                            //ou igual à soma
+                                            if(qtd <= soma){
+                                                //Adicionando a receita encontrada na listaDasReceitas,
+                                                //para mais tarde esta ser adicionada à tela
+                                                listaDasReceitas.add(r);
+                                            }
+                                        }
+                                    } catch (Exception i){
+                                        i.getStackTrace();
                                     }
-                                        Toast.makeText(view.getContext(), "VIM AQUI", Toast.LENGTH_SHORT).show();
+
+
 
                                 }
 
