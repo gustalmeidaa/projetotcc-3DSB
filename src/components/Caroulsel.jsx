@@ -27,9 +27,10 @@ function Carousel() {
             >
                 {images.map(image => (
                     <motion.div className="h-[320px] w-[220px] sm:min-h-[320px] sm:min-w-[400px] p-[14px]" key={image}>
-                        <img src={image} alt="imagens" className="w-[220px] h-[300px] sm:w-full sm:h-[240px] rounded-xl pointer-events-none shadow-xl" />
+                        <img src={image} alt="imagens" className="w-[220px] h-[300px] sm:w-full sm:h-[240px] rounded-xl pointer-events-none" />
                     </motion.div>
                 ))}
+
             </motion.div>
         </motion.div>
     )
