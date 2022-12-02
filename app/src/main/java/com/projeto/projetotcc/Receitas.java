@@ -1,7 +1,6 @@
 package com.projeto.projetotcc;
 
 import static android.app.Activity.RESULT_OK;
-
 import static androidx.fragment.app.FragmentManager.TAG;
 
 import android.content.Intent;
@@ -66,7 +65,7 @@ import java.util.stream.Collectors;
 public class Receitas extends Fragment {
     View view;
     ImageView fotoIngrediente;
-    private CheckBox pesqRefinada;
+    private CheckBox pesqGeral;
     int imageSize = 300;
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private List<String> listaChips = new ArrayList<>();
@@ -107,7 +106,6 @@ public class Receitas extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
         //Criando os objetos de cada componente da tela
         view = inflater.inflate(R.layout.fragment_receitas, container, false);
         Button pesquisar = view.findViewById(R.id.btPesquisar);
@@ -116,8 +114,10 @@ public class Receitas extends Fragment {
         ChipGroup grupoIngredientes = view.findViewById(R.id.grupoIngredientes);
         TextView pesquisarPorNome = view.findViewById(R.id.txtPesquisaPorNome);
         ImageView camera = view.findViewById(R.id.camera);
-        pesqRefinada = view.findViewById(R.id.cbPesquisaRefinada);
+        pesqGeral = view.findViewById(R.id.cbPesquisaRefinada);
         fotoIngrediente = view.findViewById(R.id.fotoIngrediente);
+
+
 
         camera.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -183,14 +183,11 @@ public class Receitas extends Fragment {
             }
         });
 
-
-
-
         pesquisar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 try{
-                    if(!pesqRefinada.isChecked()){
+                    if(pesqGeral.isChecked()){
                         String ingredientes = "";
                         for(int i = 0; i < grupoIngredientes.getChildCount(); i++){
                             Chip chip = (Chip) grupoIngredientes.getChildAt(i);
@@ -217,6 +214,7 @@ public class Receitas extends Fragment {
         });
         return view;
     }
+
 
     private void estruturarChip(String ingredientes){
         try{
@@ -332,8 +330,6 @@ public class Receitas extends Fragment {
                     List<String> nomesReceitas = new ArrayList<>();
                     List<List<String>> modo_Preparo = new ArrayList<List<String>>();
                     List<List<String>> ingredientes = new ArrayList<List<String>>();
-
-
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         try {
@@ -343,7 +339,7 @@ public class Receitas extends Fragment {
                                     lReceitas.add(receitas);
                                 }
 
-                                if(!pesqRefinada.isChecked()){
+                                if(pesqGeral.isChecked()){
                                     for(int i = 0; i < grupoIngredientes.getChildCount(); i++){
                                         Chip chip = (Chip) grupoIngredientes.getChildAt(i);
                                         //Verificando se a lista de alergênicos está vazia
@@ -381,8 +377,7 @@ public class Receitas extends Fragment {
                                     }
                                 }
 
-
-                                if(pesqRefinada.isChecked()){
+                                if(!pesqGeral.isChecked()){
                                     try{
                                         //Percorrendo a lista das receitas
                                         for(Receita r : lReceitas){
@@ -411,10 +406,25 @@ public class Receitas extends Fragment {
                                                         //Verificando se o array de ingredientes
                                                         //possui os ingredientes informados pelo usuário
                                                         if(ingAux[x].contains(listaChips.get(y))){
-                                                            //Incrementando a variável de soma
-                                                            //para mais tarde passar por um processo
-                                                            //de verificação
-                                                            soma++;
+                                                            //Verificando se a lista de alergênicos não está vazia
+                                                            if(!listaAlergenicos.isEmpty()){
+                                                                //Se não estiver, um laço de repetição será responsável
+                                                                //por, junto de uma condição, verificar se o array de
+                                                                //ingrediente não possui o ingrediente marcado como alergênico
+                                                                for(int z = 0; z < listaAlergenicos.size(); z++){
+                                                                    if(!(ingAux[x].contains(listaAlergenicos.get(z)))){
+                                                                        //Incrementando a variável de soma
+                                                                        //para mais tarde passar por um processo
+                                                                        //de verificação
+                                                                        soma++;
+                                                                    }
+                                                                }
+                                                                //Caso a lista de alergênicos esteja vazia,
+                                                                //simplesmente incrementamos a variável "soma"
+                                                            } else {
+                                                                soma++;
+                                                            }
+
                                                         }
                                                     }
                                                 }
@@ -430,9 +440,6 @@ public class Receitas extends Fragment {
                                     } catch (Exception i){
                                         i.getStackTrace();
                                     }
-
-
-
                                 }
 
                                 //Percorrendo a lista das receitas através de um forEach

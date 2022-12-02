@@ -29,6 +29,7 @@ import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import java.util.stream.Collectors;
 
 /**
@@ -42,6 +43,7 @@ public class ReceitasPorNome extends Fragment {
     private List<String> listaNomes = new ArrayList<>();
     private List<Receita> lReceitas = new ArrayList<>();
     private String nomeReceita;
+    private String s1;
     private FirebaseAuth autenticador = FirebaseAuth.getInstance();
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private String uid;
@@ -122,10 +124,11 @@ public class ReceitasPorNome extends Fragment {
             @Override
             public void onClick(View view) {
                 try{
-                    nomeReceita = nomeDaReceita.getText().toString().trim();
+                    nomeReceita = nomeDaReceita.getText().toString().trim().toLowerCase();
+                    s1 = nomeReceita.substring(0,1).toUpperCase() + nomeReceita.substring(1);
                     //Verificando se o nome inserido não é menor ou igual a 2 caracteres
-                    if(!(nomeReceita.length() <= 2)){
-                        listaNomes.add(nomeReceita);
+                    if(!(s1.length() <= 2)){
+                        listaNomes.add(s1);
                         buscarReceita();
                     } else {
                         Toast.makeText(view.getContext(), "Digite um nome válido", Toast.LENGTH_SHORT).show();
@@ -137,8 +140,6 @@ public class ReceitasPorNome extends Fragment {
             }
 
         });
-
-
         return view;
     }
 
@@ -164,7 +165,7 @@ public class ReceitasPorNome extends Fragment {
                         try{
                             //Analisando a lista de receitas em busca do nome informado
                             for (Receita rec : lReceitas) {
-                                if (rec.getNome().contains(nomeReceita)) {
+                                if (rec.getNome().contains(s1)) {
                                     listaDasReceitas.add(rec);
                                 }
                             }
